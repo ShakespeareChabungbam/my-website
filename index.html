@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Shakespeare Chabungbam | The Flagship</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Oswald:wght@400;600;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* ========================================================================
+        1.0 DESIGN TOKENS & SYSTEM VARIABLES
+        ========================================================================
+        */
+        :root {
+            /* Palette: Dark Mode Core */
+            --color-bg-base: #050505;
+            --color-bg-surface: #0a0a0a;
+            --color-bg-surface-2: #141414;
+            --color-bg-highlight: #1f1f1f;
+            
+            /* Palette: Typography */
+            --color-text-primary: #ffffff;
+            --color-text-secondary: #a1a1a6; /* Apple Grey */
+            --color-text-tertiary: #6e6e73;
+            
+            /* Palette: Brand */
+            --color-accent-blue: #2997ff; /* Apple Blue */
+            --color-accent-volt: #ccff00; /* Nike Volt */
+            --color-accent-red: #ff3b30;
+            
+            /* UI Elements */
+            --color-border-subtle: rgba(255, 255, 255, 0.08);
+            --color-border-hover: rgba(255, 255, 255, 0.2);
+            --color-glass: rgba(20, 20, 20, 0.7);
+            
+            /* Typography Scale */
+            --font-display: 'Oswald', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            --font-mono: 'Space Mono', monospace;
+            
+            --size-display: clamp(4rem, 15vw, 14rem);
+            --size-h1: clamp(2.5rem, 6vw, 5rem);
+            --size-h2: clamp(1.8rem, 4vw, 3rem);
+            --size-body: clamp(14px, 1.2vw, 18px);
+            
+            /* Animation Physics */
+            --ease-apple: cubic-bezier(0.25, 1, 0.5, 1);
+            --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+            --ease-smooth: cubic-bezier(0.65, 0, 0.35, 1);
+            
+            /* Layout */
+            --layout-gutter: clamp(20px, 5vw, 80px);
+            --layout-max-width: 1800px;
+            --header-height: 80px;
+        }
+
+        /* ========================================================================
+        2.0 CSS RESET & GLOBAL STYLES
+        ========================================================================
+        */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+            background-color: var(--color-bg-base);
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--color-text-primary);
+            line-height: 1.5;
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        a { text-decoration: none; color: inherit; transition: color 0.3s var(--ease-apple); }
+        ul { list-style: none; }
+        button { border: none; background: none; cursor: pointer; font-family: inherit; }
+        img { display: block; width: 100%; height: auto; }
+
+        /* Custom Selection Color */
+        ::selection { background: var(--color-accent-blue); color: white; }
+
+        /* ========================================================================
+        3.0 UTILITY CLASSES (The "Framework")
+        ========================================================================
+        */
+        .container {
+            width: 100%;
+            max-width: var(--layout-max-width);
+            margin: 0 auto;
+            padding: 0 var(--layout-gutter);
+        }
+
+        .flex { display: flex; }
+        .flex-col { flex-direction: column; }
+        .items-center { align-items: center; }
+        .justify-between { justify-content: space-between; }
+        .justify-center { justify-content: center; }
+        
+        .grid { display: grid; gap: 24px; }
+        .grid-2 { grid-template-columns: repeat(2, 1fr); }
+        .grid-3 { grid-template-columns: repeat(3, 1fr); }
+        .grid-12 { grid-template-columns: repeat(12, 1fr); }
+
+        .hidden-mobile { display: block; }
+        .hidden-desktop { display: none; }
+
+        /* ========================================================================
+        4.0 COMPONENT: NAVIGATION (Dynamic Island)
+        ========================================================================
+        */
+        .navbar-wrapper {
+            position: fixed;
+            top: 24px;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            transition: transform 0.4s var(--ease-apple);
+        }
+
+        .navbar-island {
+            background: var(--color-glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--color-border-subtle);
+            border-radius: 100px;
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            transition: all 0.3s var(--ease-apple);
+        }
+
+        .navbar-island:hover {
+            border-color: rgba(255,255,255,0.2);
+            transform: scale(1.02);
+        }
+
+        .nav-logo {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 18px;
+            letter-spacing: -0.5px;
+            color: white;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 8px;
+        }
+
+        .nav-link {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--color-text-secondary);
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: all 0.3s;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: white;
+            background: rgba(255,255,255,0.1);
+        }
+
+        .nav-cta {
+            background: white;
+            color: black;
+            font-weight: 600;
+            font-size: 13px;
+            padding: 10px 20px;
+            border-radius: 100px;
+            transition: transform 0.2s;
+        }
+        .nav-cta:hover { transform: scale(1.05); }
+
+        /* ========================================================================
+        5.0 HERO SECTION: THE SPIDERMAN STACK
+        ========================================================================
+        */
+        .hero-section {
+            height: 100vh;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* Authentic "Dark Room" Gradient */
+            background: radial-gradient(circle at 50% 50%, #1a1a1a 0%, #050505 80%);
+        }
+
+        /* The 3D Layer Container */
+        .stack-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            perspective: 1000px; /* Essential for 3D depth */
+            display: grid;
+            place-items: center;
+        }
+
+        /* LAYER 1: BACK TEXT (Z-Index 1) */
+        .layer-back {
+            position: absolute;
+            z-index: 1;
+            width: 100%;
+            text-align: center;
+            /* Ensures text stays behind the image */
+            transform: translateZ(-50px); 
+        }
+
+        .hero-text-giant {
+            font-family: var(--font-display);
+            font-size: var(--size-display);
+            font-weight: 800;
+            line-height: 0.8;
+            text-transform: uppercase;
+            color: transparent;
+            /* The "Nike Outline" Effect */
+            -webkit-text-stroke: 2px rgba(255, 255, 255, 0.1);
+            white-space: nowrap;
+            /* Subtle breathing animation */
+            animation: breathe 8s ease-in-out infinite;
+        }
+
+        @keyframes breathe {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.02); opacity: 0.8; }
+        }
+
+        /* LAYER 2: IMAGE (Z-Index 2) */
+        .layer-middle {
+            position: absolute;
+            z-index: 2;
+            bottom: 0;
+            width: 100%;
+            height: 90%; /* Start image slightly lower */
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            pointer-events: none;
+        }
+
+        .hero-img {
+            height: 100%;
+            width: auto;
+            max-width: 90%;
+            object-fit: contain;
+            /* High quality drop shadow for realism */
+            filter: drop-shadow(0 0 50px rgba(0,0,0,0.8));
+            /* Initial Animation State */
+            transform: translateY(100px);
+            opacity: 0;
+            animation: riseUp 1.2s var(--ease-apple) forwards 0.2s;
+        }
+
+        @keyframes riseUp {
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* LAYER 3: CREDIT CARD (Z-Index 3) */
+        .layer-front {
+            position: absolute;
+            z-index: 3;
+            /* Positioning logic: Stick to bottom center */
+            bottom: 15vh; 
+            left: 50%;
+            transform: translateX(-50%);
+            width: auto;
+        }
+
+        .hero-credit-card {
+            background: rgba(20, 20, 20, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 20px 40px;
+            border-radius: 24px;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            /* Entrance Animation */
+            transform: translateY(50px);
+            opacity: 0;
+            animation: fadeUp 1s var(--ease-apple) forwards 0.8s;
+        }
+
+        @keyframes fadeUp {
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .marvel-badge {
+            display: inline-block;
+            background-color: var(--color-accent-red);
+            color: white;
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 12px;
+            padding: 4px 10px;
+            letter-spacing: -0.02em;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+
+        .credit-title {
+            font-family: var(--font-display);
+            font-size: var(--size-h2);
+            text-transform: uppercase;
+            line-height: 1;
+            margin: 0;
+            color: white;
+        }
+
+        .credit-sub {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--color-text-secondary);
+            margin-top: 8px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        /* ========================================================================
+        6.0 MARQUEE SECTION (Infinite Scroll)
+        ========================================================================
+        */
+        .marquee-section {
+            border-top: 1px solid var(--color-border-subtle);
+            border-bottom: 1px solid var(--color-border-subtle);
+            background: var(--color-bg-surface);
+            padding: 30px 0;
+            overflow: hidden;
+            position: relative;
+            z-index: 5;
+        }
+
+        .marquee-track {
+            display: flex;
+            white-space: nowrap;
+            gap: 80px;
+            /* Infinite CSS Animation */
+            animation: marqueeScroll 25s linear infinite;
+        }
+
+        @keyframes marqueeScroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+
+        .marquee-item {
+            font-family: var(--font-display);
+            font-size: var(--size-h1);
+            text-transform: uppercase;
+            font-weight: 700;
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(255,255,255,0.3);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .marquee-item i { font-size: 0.5em; color: var(--color-accent-blue); }
+
+        /* ========================================================================
+        7.0 PROFILE SECTION (Professional Stats)
+        ========================================================================
+        */
+        .profile-section {
+            padding: 120px 0;
+            background: var(--color-bg-base);
+        }
+
+        .bio-header {
+            max-width: 900px;
+            margin-bottom: 80px;
+        }
+
+        .section-tag {
+            font-family: var(--font-mono);
+            color: var(--color-accent-blue);
+            font-size: 14px;
+            letter-spacing: 0.1em;
+            margin-bottom: 24px;
+            display: block;
+        }
+
+        .bio-headline {
+            font-family: var(--font-display);
+            font-size: var(--size-h1);
+            line-height: 1.1;
+            margin-bottom: 30px;
+        }
+
+        .bio-body {
+            font-size: 20px;
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+            max-width: 700px;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            border-top: 1px solid var(--color-border-subtle);
+            padding-top: 40px;
+        }
+
+        .stat-item h3 {
+            font-family: var(--font-display);
+            font-size: 3rem;
+            color: white;
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        .stat-item p {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--color-text-secondary);
+            text-transform: uppercase;
+        }
+
+        /* ========================================================================
+        8.0 WORK SECTION (Bento Grid)
+        ========================================================================
+        */
+        .work-section {
+            padding: 120px 0;
+            background: var(--color-bg-surface);
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-auto-rows: 550px;
+            gap: 24px;
+        }
+
+        .bento-card {
+            position: relative;
+            background: var(--color-bg-surface-2);
+            border-radius: 32px;
+            border: 1px solid var(--color-border-subtle);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 40px;
+            transition: transform 0.4s var(--ease-apple), border-color 0.4s;
+            cursor: pointer;
+        }
+
+        .bento-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255,255,255,0.3);
+        }
+
+        .bento-wide { grid-column: span 2; }
+        .bento-tall { grid-row: span 2; }
+
+        /* Card Background Image */
+        .card-img-bg {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover;
+            opacity: 0.6;
+            transition: transform 0.8s var(--ease-smooth);
+            z-index: 0;
+        }
+
+        .bento-card:hover .card-img-bg { transform: scale(1.1); opacity: 0.8; }
+
+        /* Card Content */
+        .card-content {
+            position: relative; z-index: 2;
+            pointer-events: none; /* Let clicks pass through to card */
+        }
+
+        .project-category {
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 6px 12px;
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 500;
+            display: inline-block;
+            margin-bottom: 16px;
+        }
+
+        .project-title {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            line-height: 1;
+            margin-bottom: 12px;
+        }
+
+        .project-desc {
+            font-size: 14px;
+            color: rgba(255,255,255,0.8);
+            max-width: 300px;
+            line-height: 1.5;
+        }
+
+        /* Fallback Gradients */
+        .grad-1 { background: linear-gradient(135deg, #2b0a3d, #561678); }
+        .grad-2 { background: linear-gradient(135deg, #001f3f, #0074D9); }
+        .grad-3 { background: linear-gradient(135deg, #111111, #333333); }
+
+        /* ========================================================================
+        9.0 FOOTER (Massive)
+        ========================================================================
+        */
+        .footer-section {
+            padding: 100px 0 40px;
+            border-top: 1px solid var(--color-border-subtle);
+            text-align: center;
+        }
+
+        .footer-cta-text {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 10vw, 8rem);
+            line-height: 0.9;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+            color: var(--color-text-primary);
+        }
+
+        .footer-btn {
+            display: inline-block;
+            background: white;
+            color: black;
+            font-size: 18px;
+            font-weight: 700;
+            padding: 24px 48px;
+            border-radius: 100px;
+            text-transform: uppercase;
+            transition: transform 0.3s var(--ease-bounce);
+        }
+
+        .footer-btn:hover { transform: scale(1.1); }
+
+        .footer-links {
+            margin-top: 80px;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+        }
+
+        .social-icon {
+            font-size: 24px;
+            color: var(--color-text-secondary);
+            transition: color 0.3s;
+        }
+        .social-icon:hover { color: white; }
+
+        .footer-copy {
+            margin-top: 60px;
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--color-text-tertiary);
+        }
+
+        /* ========================================================================
+        10.0 MOBILE OPTIMIZATION (THE FIX)
+        ========================================================================
+        */
+        @media (max-width: 768px) {
+            .hidden-mobile { display: none; }
+            .hidden-desktop { display: block; }
+
+            /* 1. Mobile Navigation (Bottom Bar) */
+            .navbar-wrapper {
+                top: auto;
+                bottom: 24px;
+                padding: 0 20px;
+            }
+            .navbar-island {
+                width: 100%;
+                justify-content: space-between;
+                padding: 16px 24px;
+            }
+            .nav-menu { display: none; } /* Hide links on mobile, show concise nav */
+            
+            /* 2. Stack Fixes */
+            .hero-text-giant { font-size: 22vw; } /* Ensure text fits */
+            .hero-img { 
+                max-width: 100%; 
+                height: 65vh; /* Reduce height so it doesn't get cut off */
+            }
+            .layer-front {
+                bottom: 140px; /* Push credits above the bottom nav */
+                width: 90%;
+            }
+            .hero-credit-card {
+                padding: 16px;
+                width: 100%;
+            }
+
+            /* 3. Grid Fixes */
+            .bento-grid { grid-template-columns: 1fr; }
+            .bento-wide, .bento-tall { grid-column: span 1; grid-row: span 1; }
+            .bento-card { height: 450px; }
+
+            /* 4. Stats Fix */
+            .stats-grid { grid-template-columns: 1fr 1fr; }
+        }
+    </style>
+    <style>
+    /* SERVICES SECTION STYLES */
+    .services-section {
+        padding: 120px 0;
+        background: var(--color-bg-base);
+    }
+
+    .service-item {
+        border-bottom: 1px solid var(--color-border-subtle);
+        padding: 40px 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        transition: all 0.3s var(--ease-apple);
+        cursor: pointer;
+        group: hover-trigger;
+    }
+
+    .service-item:hover {
+        border-color: white;
+        background: rgba(255,255,255,0.02);
+        padding-left: 20px; /* Slide effect */
+    }
+
+    .svc-left { max-width: 50%; }
+    
+    .svc-num {
+        font-family: var(--font-mono);
+        color: var(--color-accent-blue);
+        margin-bottom: 16px;
+        display: block;
+        font-size: 14px;
+    }
+
+    .svc-title {
+        font-family: var(--font-display);
+        font-size: clamp(2rem, 4vw, 3.5rem);
+        color: var(--color-text-secondary);
+        transition: color 0.3s;
+        text-transform: uppercase;
+        margin: 0;
+    }
+
+    .service-item:hover .svc-title { color: white; }
+
+    .svc-tags {
+        display: flex;
+        gap: 10px;
+        margin-top: 20px;
+    }
+
+    .tag {
+        border: 1px solid var(--color-border-subtle);
+        padding: 6px 14px;
+        border-radius: 100px;
+        font-size: 12px;
+        color: var(--color-text-tertiary);
+    }
+
+    .svc-icon {
+        font-size: 40px;
+        color: white;
+        opacity: 0;
+        transform: translateX(-20px);
+        transition: all 0.3s var(--ease-bounce);
+    }
+
+    .service-item:hover .svc-icon { opacity: 1; transform: translateX(0); }
+
+    @media (max-width: 768px) {
+        .service-item { flex-direction: column; gap: 20px; }
+        .svc-left { max-width: 100%; }
+        .svc-icon { display: none; }
+    }
+</style>
+</head>
+<body>
+
+    <div class="navbar-wrapper">
+        <nav class="navbar-island">
+            <a href="#" class="nav-logo">SC.</a>
+            
+            <div class="nav-menu hidden-mobile">
+                <a href="#work" class="nav-link active">Work</a>
+                <a href="#about" class="nav-link">Studio</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+
+            <a href="mailto:shakespearechabungbam12@gmail.com" class="nav-cta">Let's Talk</a>
+        </nav>
+    </div>
+
+    <section class="hero-section" id="home">
+        <div class="stack-container">
+            
+            <div class="layer-back" id="parallax-text">
+                <h1 class="hero-text-giant">SPIDER-MAN</h1>
+            </div>
+
+            <div class="layer-middle" id="parallax-img">
+                <img src="spiderweb.png" alt="Spiderman Design" class="hero-img">
+            </div>
+
+            <div class="layer-front" id="parallax-card">
+                <div class="hero-credit-card">
+                    <span class="marvel-badge">MARVEL STUDIOS</span>
+                    <h2 class="credit-title">Design by Shakespeare</h2>
+                    <p class="credit-sub">Visual Engineering / Concept Art</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <div class="marquee-section">
+        <div class="marquee-track">
+            <div class="marquee-item">Creative Engineer <i class="fa-solid fa-bolt"></i></div>
+            <div class="marquee-item">MCA Scholar <i class="fa-solid fa-graduation-cap"></i></div>
+            <div class="marquee-item">Full Stack Dev <i class="fa-solid fa-code"></i></div>
+            <div class="marquee-item">UI/UX Design <i class="fa-solid fa-pen-nib"></i></div>
+            <div class="marquee-item">Creative Engineer <i class="fa-solid fa-bolt"></i></div>
+            <div class="marquee-item">MCA Scholar <i class="fa-solid fa-graduation-cap"></i></div>
+            <div class="marquee-item">Full Stack Dev <i class="fa-solid fa-code"></i></div>
+            <div class="marquee-item">UI/UX Design <i class="fa-solid fa-pen-nib"></i></div>
+        </div>
+    </div>
+
+    <section class="profile-section" id="about">
+        <div class="container">
+            <div class="bio-header">
+                <span class="section-tag">01 // THE ARCHITECT</span>
+                <h2 class="bio-headline">Engineering digital<br>experiences that <span style="color: var(--color-accent-blue);">matter.</span></h2>
+                <p class="bio-body">
+                    I am Shakespeare Chabungbam. A Master of Computer Applications (MCA) student based in Manipur. 
+                    I don't just write code; I engineer visual systems. Combining the robust logic of software engineering 
+                    with the emotive power of brand identity.
+                </p>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3>3+</h3>
+                    <p>Years Experience</p>
+                </div>
+                <div class="stat-item">
+                    <h3>20+</h3>
+                    <p>Projects Shipped</p>
+                </div>
+                <div class="stat-item">
+                    <h3>100%</h3>
+                    <p>Client Satisfaction</p>
+                </div>
+                <div class="stat-item">
+                    <h3>MCA</h3>
+                    <p>Master's Degree</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="skills-section" id="skills">
+    <div class="container">
+        <span class="section-tag">01.5 // CAPABILITIES</span>
+        
+        <div class="skill-container">
+            
+            <div class="skill-column">
+                <h3 class="skill-col-title"><i class="fa-solid fa-code" style="color: var(--color-accent-blue)"></i> ENGINEERING</h3>
+                
+                <div class="skill-bar-wrapper">
+                    <div class="skill-meta"><span>Full Stack (MERN)</span><span>90%</span></div>
+                    <div class="progress-track"><div class="progress-fill" style="width: 90%"></div></div>
+                </div>
+
+                <div class="skill-bar-wrapper">
+                    <div class="skill-meta"><span>Python / AI Logic</span><span>85%</span></div>
+                    <div class="progress-track"><div class="progress-fill" style="width: 85%"></div></div>
+                </div>
+
+                <div class="skill-bar-wrapper">
+                    <div class="skill-meta"><span>Database (SQL/Mongo)</span><span>80%</span></div>
+                    <div class="progress-track"><div class="progress-fill" style="width: 80%"></div></div>
+                </div>
+            </div>
+
+            <div class="skill-column">
+                <h3 class="skill-col-title"><i class="fa-solid fa-pen-nib" style="color: var(--color-accent-volt)"></i> DESIGN</h3>
+                
+                <div class="skill-bar-wrapper">
+                    <div class="skill-meta"><span>UI/UX Systems</span><span>95%</span></div>
+                    <div class="progress-track"><div class="progress-fill creative-fill" style="width: 95%"></div></div>
+                </div>
+
+                <div class="skill-bar-wrapper">
+                    <div class="skill-meta"><span>Brand Identity</span><span>90%</span></div>
+                    <div class="progress-track"><div class="progress-fill creative-fill" style="width: 90%"></div></div>
+                </div>
+
+                <div class="skill-bar-wrapper">
+                    <div class="skill-meta"><span>Motion / 3D</span><span>75%</span></div>
+                    <div class="progress-track"><div class="progress-fill creative-fill" style="width: 75%"></div></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+    <section class="work-section" id="work">
+        <div class="container">
+            <span class="section-tag" style="margin-bottom: 40px; display:block;">02 // SELECTED WORKS</span>
+            
+            <div class="bento-grid">
+                
+                <div class="bento-card bento-wide">
+                    <div class="grad-1 card-img-bg"></div>
+                    <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80" class="card-img-bg" alt="ShMusic" onerror="this.style.display='none'">
+                    
+                    <div class="card-content">
+                        <span class="project-category">Flagship Project</span>
+                        <h3 class="project-title">ShMusic.com</h3>
+                        <p class="project-desc">A high-fidelity audio streaming platform built with React. Features real-time visualization, cloud sync, and gapless playback.</p>
+                    </div>
+                </div>
+
+                <div class="bento-card">
+                    <div class="grad-2 card-img-bg"></div>
+                    <img src="https://images.unsplash.com/photo-1626785774573-4b799314346d?auto=format&fit=crop&q=80" class="card-img-bg" alt="Branding" onerror="this.style.display='none'">
+                    
+                    <div class="card-content">
+                        <span class="project-category">Brand Identity</span>
+                        <h3 class="project-title">MANFETE 25</h3>
+                        <p class="project-desc">Complete visual system for the largest cultural festival in Manipur.</p>
+                    </div>
+                </div>
+
+                <div class="bento-card">
+                    <div class="grad-3 card-img-bg"></div>
+                    <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&q=80" class="card-img-bg" alt="Social" onerror="this.style.display='none'">
+                    
+                    <div class="card-content">
+                        <span class="project-category">Growth</span>
+                        <h3 class="project-title">Artory</h3>
+                        <p class="project-desc">Social media strategy and design for a creative community.</p>
+                    </div>
+                </div>
+
+                <div class="bento-card bento-wide">
+                    <div class="grad-1 card-img-bg" style="background: linear-gradient(135deg, #0044ff, #001144);"></div>
+                    
+                    <div class="card-content">
+                        <span class="project-category">Development</span>
+                        <h3 class="project-title">FinTech Dashboard</h3>
+                        <p class="project-desc">Real-time financial data visualization dashboard for enterprise clients.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="services-section">
+    <div class="container">
+        <span class="section-tag">02.5 // SERVICES</span>
+        
+        <div class="service-item">
+            <div class="svc-left">
+                <span class="svc-num">01</span>
+                <h3 class="svc-title">Web Engineering</h3>
+                <div class="svc-tags">
+                    <span class="tag">React JS</span>
+                    <span class="tag">Performance</span>
+                    <span class="tag">SEO</span>
+                </div>
+            </div>
+            <i class="fa-solid fa-arrow-right svc-icon"></i>
+        </div>
+
+        <div class="service-item">
+            <div class="svc-left">
+                <span class="svc-num">02</span>
+                <h3 class="svc-title">Brand Visuals</h3>
+                <div class="svc-tags">
+                    <span class="tag">Logo Design</span>
+                    <span class="tag">Posters (Manfete)</span>
+                    <span class="tag">Typography</span>
+                </div>
+            </div>
+            <i class="fa-solid fa-arrow-right svc-icon"></i>
+        </div>
+
+        <div class="service-item">
+            <div class="svc-left">
+                <span class="svc-num">03</span>
+                <h3 class="svc-title">App Development</h3>
+                <div class="svc-tags">
+                    <span class="tag">iOS / Android</span>
+                    <span class="tag">UI Logic</span>
+                    <span class="tag">API Integration</span>
+                </div>
+            </div>
+            <i class="fa-solid fa-arrow-right svc-icon"></i>
+        </div>
+
+    </div>
+</section>
+
+    <footer class="footer-section" id="contact">
+        <div class="container">
+            <span class="section-tag">03 // CONTACT</span>
+            <h2 class="footer-cta-text">Let's Build<br>The Future.</h2>
+            <a href="mailto:shakespearechabungbam12@gmail.com" class="footer-btn">Get In Touch</a>
+
+            <div class="footer-links">
+                <a href="#" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="social-icon"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="#" class="social-icon"><i class="fa-brands fa-github"></i></a>
+                <a href="#" class="social-icon"><i class="fa-brands fa-dribbble"></i></a>
+            </div>
+
+            <p class="footer-copy">&copy; 2025 Shakespeare Chabungbam. Designed & Engineered in Manipur, India.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. SELECTORS
+            const pText = document.getElementById('parallax-text');
+            const pImg = document.getElementById('parallax-img');
+            const pCard = document.getElementById('parallax-card');
+            const hero = document.getElementById('home');
+
+            // 2. PARALLAX LOGIC (Optimized)
+            // We use standard scroll listener but optimized with requestAnimationFrame
+            let lastScrollY = window.scrollY;
+            let ticking = false;
+
+            function updateParallax() {
+                const scrollY = window.scrollY;
+                const heroHeight = hero.offsetHeight;
+
+                // Only calculate if Hero is in view
+                if (scrollY <= heroHeight) {
+                    // Text moves DOWN slowly (Background)
+                    pText.style.transform = `translateY(${scrollY * 0.4}px) scale(${1 + scrollY * 0.0005})`;
+                    
+                    // Image moves DOWN faster (Middle Ground)
+                    // We only move it slightly to keep it grounded
+                    pImg.style.transform = `translateY(${scrollY * 0.15}px)`;
+
+                    // Card moves UP (Foreground)
+                    // Creates a converging effect
+                    pCard.style.transform = `translate(-50%, -${scrollY * 0.3}px)`;
+                }
+
+                ticking = false;
+            }
+
+            window.addEventListener('scroll', () => {
+                if (!ticking) {
+                    window.requestAnimationFrame(updateParallax);
+                    ticking = true;
+                }
+            });
+
+            // 3. NAV BAR SCROLL EFFECT
+            const navbar = document.querySelector('.navbar-island');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.style.background = 'rgba(5, 5, 5, 0.9)';
+                    navbar.style.padding = '10px 24px';
+                } else {
+                    navbar.style.background = 'rgba(20, 20, 20, 0.6)';
+                    navbar.style.padding = '12px 24px';
+                }
+            });
+        });
+    </script>
+    <script>
+    const observerSkills = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.transform = 'scaleX(1)';
+            }
+        });
+    });
+    document.querySelectorAll('.progress-fill').forEach((el) => observerSkills.observe(el));
+</script>
+    
+</body>
+</html>
