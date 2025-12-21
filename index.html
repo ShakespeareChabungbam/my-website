@@ -1,882 +1,894 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Shakespeare Chabungbam | The Flagship</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="description" content="Portfolio of Shakespeare Chabungbam - Creative Engineer & Graphic Designer.">
+    <meta name="theme-color" content="#050505">
+    
+    <title>Shakespeare Chabungbam | Creative Engineer</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Oswald:wght@400;600;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Oswald:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         /* ========================================================================
-        1.0 DESIGN TOKENS & SYSTEM VARIABLES
+        1.0 CORE VARIABLES & TOKENS
         ========================================================================
         */
         :root {
-            /* Palette: Dark Mode Core */
-            --color-bg-base: #050505;
-            --color-bg-surface: #0a0a0a;
-            --color-bg-surface-2: #141414;
-            --color-bg-highlight: #1f1f1f;
+            /* BRAND PALETTE - "Dark Mode Premium" */
+            --color-bg-base: #050505;       /* Deepest Black (Nike) */
+            --color-bg-surface: #0f0f0f;    /* Surface Black */
+            --color-bg-card: #141414;       /* Card Background */
+            --color-bg-glass: rgba(20, 20, 20, 0.65);
             
-            /* Palette: Typography */
-            --color-text-primary: #ffffff;
-            --color-text-secondary: #a1a1a6; /* Apple Grey */
-            --color-text-tertiary: #6e6e73;
+            /* TYPOGRAPHY COLORS */
+            --color-text-primary: #F5F5F7;  /* Apple White */
+            --color-text-secondary: #86868b;/* Apple Grey */
+            --color-text-tertiary: #424245; /* Dark Grey */
             
-            /* Palette: Brand */
-            --color-accent-blue: #2997ff; /* Apple Blue */
-            --color-accent-volt: #ccff00; /* Nike Volt */
-            --color-accent-red: #ff3b30;
+            /* ACCENTS */
+            --color-accent-blue: #2997ff;   /* Apple Blue */
+            --color-accent-volt: #DFFF00;   /* Nike Volt */
+            --color-accent-red: #ff3b30;    /* Alert Red */
+            --color-accent-gold: #FFD700;   /* Premium Gold */
             
-            /* UI Elements */
-            --color-border-subtle: rgba(255, 255, 255, 0.08);
-            --color-border-hover: rgba(255, 255, 255, 0.2);
-            --color-glass: rgba(20, 20, 20, 0.7);
+            /* BORDERS */
+            --border-light: rgba(255, 255, 255, 0.08);
+            --border-hover: rgba(255, 255, 255, 0.2);
             
-            /* Typography Scale */
+            /* SPACING */
+            --gutter: clamp(20px, 5vw, 60px);
+            --container-width: 1600px;
+            
+            /* FONTS */
             --font-display: 'Oswald', sans-serif;
             --font-body: 'Inter', sans-serif;
             --font-mono: 'Space Mono', monospace;
             
-            --size-display: clamp(4rem, 15vw, 14rem);
-            --size-h1: clamp(2.5rem, 6vw, 5rem);
-            --size-h2: clamp(1.8rem, 4vw, 3rem);
-            --size-body: clamp(14px, 1.2vw, 18px);
-            
-            /* Animation Physics */
-            --ease-apple: cubic-bezier(0.25, 1, 0.5, 1);
-            --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
-            --ease-smooth: cubic-bezier(0.65, 0, 0.35, 1);
-            
-            /* Layout */
-            --layout-gutter: clamp(20px, 5vw, 80px);
-            --layout-max-width: 1800px;
-            --header-height: 80px;
+            /* EASING */
+            --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+            --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         /* ========================================================================
-        2.0 CSS RESET & GLOBAL STYLES
+        2.0 RESET & BASE STYLES
         ========================================================================
         */
         *, *::before, *::after {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
+            cursor: none; /* Hiding default cursor for custom one */
         }
 
         html {
             font-size: 16px;
             scroll-behavior: smooth;
             background-color: var(--color-bg-base);
+            overflow-x: hidden;
         }
 
         body {
             font-family: var(--font-body);
             color: var(--color-text-primary);
-            line-height: 1.5;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
             overflow-x: hidden;
             width: 100%;
         }
 
-        a { text-decoration: none; color: inherit; transition: color 0.3s var(--ease-apple); }
-        ul { list-style: none; }
-        button { border: none; background: none; cursor: pointer; font-family: inherit; }
-        img { display: block; width: 100%; height: auto; }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-display);
+            font-weight: 700;
+            line-height: 1.1;
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+        }
 
-        /* Custom Selection Color */
-        ::selection { background: var(--color-accent-blue); color: white; }
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s ease;
+        }
+
+        ul { list-style: none; }
+        img { display: block; max-width: 100%; height: auto; }
+        button { border: none; background: none; font-family: inherit; }
+
+        ::selection {
+            background: var(--color-accent-blue);
+            color: white;
+        }
 
         /* ========================================================================
-        3.0 UTILITY CLASSES (The "Framework")
+        3.0 CUSTOM CURSOR SYSTEM
+        ========================================================================
+        */
+        .cursor-dot,
+        .cursor-outline {
+            position: fixed;
+            top: 0;
+            left: 0;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            z-index: 9999;
+            pointer-events: none;
+        }
+
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background-color: white;
+        }
+
+        .cursor-outline {
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            transition: width 0.2s, height 0.2s, background-color 0.2s;
+        }
+
+        /* Hover states for cursor */
+        body.hovering .cursor-outline {
+            width: 60px;
+            height: 60px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-color: transparent;
+            backdrop-filter: blur(2px);
+        }
+
+        @media (hover: none) {
+            .cursor-dot, .cursor-outline { display: none; }
+            *, *::before, *::after { cursor: auto; }
+        }
+
+        /* ========================================================================
+        4.0 PRELOADER
+        ========================================================================
+        */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: var(--color-bg-base);
+            z-index: 10000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .loader-text {
+            font-family: var(--font-display);
+            font-size: 8rem;
+            color: var(--color-text-primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .loader-bar {
+            width: 200px;
+            height: 2px;
+            background: var(--color-bg-surface-2);
+            margin-top: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .loader-fill {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 0%;
+            background: var(--color-accent-blue);
+            transition: width 0.1s linear;
+        }
+
+        /* ========================================================================
+        5.0 UTILITIES & ANIMATIONS
         ========================================================================
         */
         .container {
-            width: 100%;
-            max-width: var(--layout-max-width);
+            max-width: var(--container-width);
             margin: 0 auto;
-            padding: 0 var(--layout-gutter);
+            padding: 0 var(--gutter);
         }
 
-        .flex { display: flex; }
-        .flex-col { flex-direction: column; }
-        .items-center { align-items: center; }
-        .justify-between { justify-content: space-between; }
-        .justify-center { justify-content: center; }
+        .section-padding { padding: 160px 0; }
         
-        .grid { display: grid; gap: 24px; }
-        .grid-2 { grid-template-columns: repeat(2, 1fr); }
-        .grid-3 { grid-template-columns: repeat(3, 1fr); }
-        .grid-12 { grid-template-columns: repeat(12, 1fr); }
+        /* Reveal Animation Classes */
+        .reveal-text {
+            transform: translateY(100%);
+            opacity: 0;
+            transition: all 1s var(--ease-out-expo);
+        }
+        
+        .reveal-text.active {
+            transform: translateY(0);
+            opacity: 1;
+        }
 
-        .hidden-mobile { display: block; }
-        .hidden-desktop { display: none; }
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s var(--ease-out-expo);
+        }
+
+        .fade-in-up.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .text-gradient {
+            background: linear-gradient(to right, #fff, #666);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
         /* ========================================================================
-        4.0 COMPONENT: NAVIGATION (Dynamic Island)
+        6.0 NAVIGATION (Glassmorphism)
         ========================================================================
         */
-        .navbar-wrapper {
+        .nav-wrapper {
             position: fixed;
-            top: 24px;
+            top: 0;
             left: 0;
             width: 100%;
+            padding: 24px 0;
             z-index: 1000;
-            display: flex;
-            justify-content: center;
-            transition: transform 0.4s var(--ease-apple);
+            transition: padding 0.4s ease;
         }
 
-        .navbar-island {
-            background: var(--color-glass);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid var(--color-border-subtle);
+        .nav-inner {
+            background: var(--color-bg-glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border-light);
             border-radius: 100px;
-            padding: 12px 24px;
+            padding: 10px 10px 10px 30px;
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            gap: 40px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-            transition: all 0.3s var(--ease-apple);
+            max-width: 600px;
+            margin: 0 auto;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+            transition: transform 0.3s ease;
         }
 
-        .navbar-island:hover {
-            border-color: rgba(255,255,255,0.2);
-            transform: scale(1.02);
-        }
-
-        .nav-logo {
+        .logo {
             font-family: var(--font-display);
             font-weight: 700;
-            font-size: 18px;
-            letter-spacing: -0.5px;
-            color: white;
+            font-size: 1.2rem;
+            letter-spacing: -1px;
         }
 
-        .nav-menu {
+        .nav-links {
             display: flex;
-            gap: 8px;
+            gap: 5px;
         }
 
         .nav-link {
-            font-size: 13px;
+            font-size: 0.85rem;
             font-weight: 500;
             color: var(--color-text-secondary);
-            padding: 8px 16px;
-            border-radius: 20px;
-            transition: all 0.3s;
+            padding: 10px 20px;
+            border-radius: 100px;
+            position: relative;
+            overflow: hidden;
         }
 
-        .nav-link:hover, .nav-link.active {
-            color: white;
-            background: rgba(255,255,255,0.1);
-        }
+        .nav-link:hover { color: white; }
 
         .nav-cta {
             background: white;
             color: black;
-            font-weight: 600;
-            font-size: 13px;
-            padding: 10px 20px;
+            padding: 12px 24px;
             border-radius: 100px;
-            transition: transform 0.2s;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: transform 0.3s var(--ease-out-expo);
         }
+
         .nav-cta:hover { transform: scale(1.05); }
 
         /* ========================================================================
-        5.0 HERO SECTION: THE SPIDERMAN STACK
+        7.0 HERO SECTION (Spiderman Parallax)
         ========================================================================
         */
-        .hero-section {
+        .hero {
             height: 100vh;
             width: 100%;
             position: relative;
             overflow: hidden;
             display: flex;
-            justify-content: center;
             align-items: center;
-            /* Authentic "Dark Room" Gradient */
-            background: radial-gradient(circle at 50% 50%, #1a1a1a 0%, #050505 80%);
+            justify-content: center;
+            perspective: 1000px;
+            background: radial-gradient(circle at 50% 50%, #1a1a1a 0%, #050505 70%);
         }
 
-        /* The 3D Layer Container */
-        .stack-container {
+        .hero-content {
             position: relative;
+            z-index: 10;
+            text-align: center;
             width: 100%;
             height: 100%;
-            perspective: 1000px; /* Essential for 3D depth */
-            display: grid;
-            place-items: center;
-        }
-
-        /* LAYER 1: BACK TEXT (Z-Index 1) */
-        .layer-back {
-            position: absolute;
-            z-index: 1;
-            width: 100%;
-            text-align: center;
-            /* Ensures text stays behind the image */
-            transform: translateZ(-50px); 
-        }
-
-        .hero-text-giant {
-            font-family: var(--font-display);
-            font-size: var(--size-display);
-            font-weight: 800;
-            line-height: 0.8;
-            text-transform: uppercase;
-            color: transparent;
-            /* The "Nike Outline" Effect */
-            -webkit-text-stroke: 2px rgba(255, 255, 255, 0.1);
-            white-space: nowrap;
-            /* Subtle breathing animation */
-            animation: breathe 8s ease-in-out infinite;
-        }
-
-        @keyframes breathe {
-            0%, 100% { transform: scale(1); opacity: 0.5; }
-            50% { transform: scale(1.02); opacity: 0.8; }
-        }
-
-        /* LAYER 2: IMAGE (Z-Index 2) */
-        .layer-middle {
-            position: absolute;
-            z-index: 2;
-            bottom: 0;
-            width: 100%;
-            height: 90%; /* Start image slightly lower */
             display: flex;
             justify-content: center;
-            align-items: flex-end;
+            align-items: center;
+        }
+
+        .hero-title-bg {
+            position: absolute;
+            font-size: clamp(4rem, 18vw, 20rem);
+            font-weight: 800;
+            color: transparent;
+            -webkit-text-stroke: 2px rgba(255,255,255,0.05);
+            white-space: nowrap;
+            z-index: 1;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             pointer-events: none;
         }
 
-        .hero-img {
-            height: 100%;
-            width: auto;
-            max-width: 90%;
-            object-fit: contain;
-            /* High quality drop shadow for realism */
-            filter: drop-shadow(0 0 50px rgba(0,0,0,0.8));
-            /* Initial Animation State */
-            transform: translateY(100px);
-            opacity: 0;
-            animation: riseUp 1.2s var(--ease-apple) forwards 0.2s;
-        }
-
-        @keyframes riseUp {
-            to { transform: translateY(0); opacity: 1; }
-        }
-
-        /* LAYER 3: CREDIT CARD (Z-Index 3) */
-        .layer-front {
+        .hero-img-container {
             position: absolute;
-            z-index: 3;
-            /* Positioning logic: Stick to bottom center */
-            bottom: 15vh; 
+            bottom: -5%;
             left: 50%;
             transform: translateX(-50%);
-            width: auto;
+            z-index: 5;
+            width: 80%;
+            max-width: 800px;
+            transition: transform 0.1s linear; /* Smooth parallax */
         }
 
-        .hero-credit-card {
-            background: rgba(20, 20, 20, 0.6);
+        .hero-img {
+            width: 100%;
+            filter: drop-shadow(0 0 80px rgba(0,0,0,0.8));
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .hero-card {
+            position: absolute;
+            bottom: 15vh;
+            z-index: 20;
+            background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            padding: 20px 40px;
+            padding: 24px 40px;
             border-radius: 24px;
+            border: 1px solid var(--border-light);
             text-align: center;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-            /* Entrance Animation */
             transform: translateY(50px);
             opacity: 0;
-            animation: fadeUp 1s var(--ease-apple) forwards 0.8s;
+            animation: slideUp 1s var(--ease-out-expo) forwards 1.5s;
         }
 
-        @keyframes fadeUp {
+        @keyframes slideUp {
             to { transform: translateY(0); opacity: 1; }
         }
 
-        .marvel-badge {
+        .badge {
             display: inline-block;
-            background-color: var(--color-accent-red);
+            background: var(--color-accent-red);
             color: white;
-            font-family: var(--font-display);
+            font-size: 10px;
             font-weight: 700;
-            font-size: 12px;
-            padding: 4px 10px;
-            letter-spacing: -0.02em;
-            margin-bottom: 12px;
+            padding: 4px 8px;
             text-transform: uppercase;
-        }
-
-        .credit-title {
-            font-family: var(--font-display);
-            font-size: var(--size-h2);
-            text-transform: uppercase;
-            line-height: 1;
-            margin: 0;
-            color: white;
-        }
-
-        .credit-sub {
-            font-family: var(--font-mono);
-            font-size: 12px;
-            color: var(--color-text-secondary);
-            margin-top: 8px;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
         }
 
         /* ========================================================================
-        6.0 MARQUEE SECTION (Infinite Scroll)
+        8.0 MARQUEE SECTION
         ========================================================================
         */
-        .marquee-section {
-            border-top: 1px solid var(--color-border-subtle);
-            border-bottom: 1px solid var(--color-border-subtle);
+        .marquee {
+            padding: 40px 0;
             background: var(--color-bg-surface);
-            padding: 30px 0;
+            border-top: 1px solid var(--border-light);
+            border-bottom: 1px solid var(--border-light);
             overflow: hidden;
-            position: relative;
-            z-index: 5;
-        }
-
-        .marquee-track {
             display: flex;
-            white-space: nowrap;
-            gap: 80px;
-            /* Infinite CSS Animation */
-            animation: marqueeScroll 25s linear infinite;
         }
 
-        @keyframes marqueeScroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-100%); }
+        .marquee-content {
+            display: flex;
+            gap: 60px;
+            animation: scroll 20s linear infinite;
+            min-width: 100%;
         }
 
         .marquee-item {
             font-family: var(--font-display);
-            font-size: var(--size-h1);
-            text-transform: uppercase;
-            font-weight: 700;
+            font-size: 4rem;
             color: transparent;
             -webkit-text-stroke: 1px rgba(255,255,255,0.3);
+            white-space: nowrap;
             display: flex;
             align-items: center;
             gap: 20px;
         }
 
-        .marquee-item i { font-size: 0.5em; color: var(--color-accent-blue); }
+        .marquee-item i { font-size: 2rem; color: var(--color-accent-blue); }
 
-        /* ========================================================================
-        7.0 PROFILE SECTION (Professional Stats)
-        ========================================================================
-        */
-        .profile-section {
-            padding: 120px 0;
-            background: var(--color-bg-base);
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
         }
 
-        .bio-header {
-            max-width: 900px;
+        /* ========================================================================
+        9.0 ABOUT SECTION
+        ========================================================================
+        */
+        .section-header {
             margin-bottom: 80px;
         }
 
-        .section-tag {
+        .tagline {
             font-family: var(--font-mono);
             color: var(--color-accent-blue);
-            font-size: 14px;
-            letter-spacing: 0.1em;
-            margin-bottom: 24px;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
             display: block;
+            margin-bottom: 20px;
         }
 
-        .bio-headline {
-            font-family: var(--font-display);
-            font-size: var(--size-h1);
+        .headline {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
             line-height: 1.1;
             margin-bottom: 30px;
+            max-width: 900px;
         }
 
-        .bio-body {
-            font-size: 20px;
+        .body-text {
+            font-size: 1.2rem;
             color: var(--color-text-secondary);
-            line-height: 1.6;
             max-width: 700px;
+            line-height: 1.7;
         }
 
-        /* Stats Grid */
-        .stats-grid {
+        .stats-wrapper {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 24px;
-            border-top: 1px solid var(--color-border-subtle);
-            padding-top: 40px;
+            gap: 40px;
+            border-top: 1px solid var(--border-light);
+            padding-top: 60px;
+            margin-top: 80px;
         }
 
-        .stat-item h3 {
-            font-family: var(--font-display);
-            font-size: 3rem;
-            color: white;
-            line-height: 1;
+        .stat-box h3 {
+            font-size: 3.5rem;
             margin-bottom: 10px;
+            background: linear-gradient(180deg, #fff, #888);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .stat-item p {
+        .stat-box p {
             font-family: var(--font-mono);
-            font-size: 12px;
+            font-size: 0.8rem;
             color: var(--color-text-secondary);
             text-transform: uppercase;
         }
 
         /* ========================================================================
-        8.0 WORK SECTION (Bento Grid)
+        10.0 WORK (Bento Grid)
         ========================================================================
         */
-        .work-section {
-            padding: 120px 0;
-            background: var(--color-bg-surface);
-        }
-
         .bento-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            grid-auto-rows: 550px;
+            grid-auto-rows: 500px;
             gap: 24px;
         }
 
-        .bento-card {
-            position: relative;
-            background: var(--color-bg-surface-2);
-            border-radius: 32px;
-            border: 1px solid var(--color-border-subtle);
+        .card {
+            background: var(--color-bg-card);
+            border-radius: 30px;
             overflow: hidden;
+            position: relative;
+            border: 1px solid var(--border-light);
+            transition: border-color 0.3s ease;
+            transform-style: preserve-3d; /* For Tilt Effect */
+            perspective: 1000px;
+        }
+
+        .card:hover { border-color: var(--border-hover); }
+
+        .card-inner {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            z-index: 2;
+            padding: 40px;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            padding: 40px;
-            transition: transform 0.4s var(--ease-apple), border-color 0.4s;
-            cursor: pointer;
+            justify-content: flex-end;
+            transition: transform 0.1s ease-out; /* Smooth Tilt */
         }
 
-        .bento-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(255,255,255,0.3);
-        }
-
-        .bento-wide { grid-column: span 2; }
-        .bento-tall { grid-row: span 2; }
-
-        /* Card Background Image */
-        .card-img-bg {
+        .card-bg {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
             object-fit: cover;
-            opacity: 0.6;
-            transition: transform 0.8s var(--ease-smooth);
-            z-index: 0;
+            opacity: 0.5;
+            transition: transform 0.6s ease;
+            z-index: 1;
         }
 
-        .bento-card:hover .card-img-bg { transform: scale(1.1); opacity: 0.8; }
+        .card:hover .card-bg { transform: scale(1.1); opacity: 0.7; }
 
-        /* Card Content */
-        .card-content {
-            position: relative; z-index: 2;
-            pointer-events: none; /* Let clicks pass through to card */
-        }
+        .col-span-2 { grid-column: span 2; }
+        .row-span-2 { grid-row: span 2; }
 
-        .project-category {
-            background: rgba(0,0,0,0.5);
+        .project-tag {
+            background: rgba(255,255,255,0.1);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.2);
-            padding: 6px 12px;
+            padding: 8px 16px;
             border-radius: 100px;
-            font-size: 12px;
+            font-size: 0.8rem;
             font-weight: 500;
-            display: inline-block;
             margin-bottom: 16px;
+            align-self: flex-start;
+            border: 1px solid rgba(255,255,255,0.1);
         }
 
-        .project-title {
-            font-family: var(--font-display);
-            font-size: 2.5rem;
-            line-height: 1;
-            margin-bottom: 12px;
-        }
+        .project-title { font-size: 2.5rem; margin-bottom: 10px; }
+        .project-desc { color: rgba(255,255,255,0.8); font-size: 1rem; max-width: 90%; }
 
-        .project-desc {
-            font-size: 14px;
-            color: rgba(255,255,255,0.8);
-            max-width: 300px;
-            line-height: 1.5;
-        }
-
-        /* Fallback Gradients */
-        .grad-1 { background: linear-gradient(135deg, #2b0a3d, #561678); }
-        .grad-2 { background: linear-gradient(135deg, #001f3f, #0074D9); }
-        .grad-3 { background: linear-gradient(135deg, #111111, #333333); }
+        /* Gradients for placeholders */
+        .grad-blue { background: linear-gradient(135deg, #000428, #004e92); }
+        .grad-purple { background: linear-gradient(135deg, #2b0a3d, #561678); }
+        .grad-dark { background: linear-gradient(135deg, #0f0c29, #302b63, #24243e); }
 
         /* ========================================================================
-        9.0 FOOTER (Massive)
+        11.0 PHILOSOPHY & SKILLS
         ========================================================================
         */
-        .footer-section {
-            padding: 100px 0 40px;
-            border-top: 1px solid var(--color-border-subtle);
+        .philosophy-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+        }
+
+        .philo-card {
+            border-left: 1px solid var(--border-light);
+            padding-left: 40px;
+            transition: border-color 0.3s;
+        }
+
+        .philo-card:hover { border-left-color: var(--color-accent-volt); }
+
+        .philo-icon {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--color-accent-blue);
+        }
+
+        /* Skill Bars */
+        .skill-group { margin-bottom: 30px; }
+        .skill-header { display: flex; justify-content: space-between; margin-bottom: 10px; }
+        .skill-track {
+            width: 100%;
+            height: 4px;
+            background: var(--border-light);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .skill-fill {
+            height: 100%;
+            background: var(--color-text-primary);
+            transform-origin: left;
+            transform: scaleX(0);
+            transition: transform 1.5s var(--ease-out-expo);
+        }
+        .fill-blue { background: var(--color-accent-blue); }
+        .fill-volt { background: var(--color-accent-volt); }
+
+        /* ========================================================================
+        12.0 CONTACT FORM & FOOTER
+        ========================================================================
+        */
+        .contact-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+        }
+
+        .form-group {
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        .form-input {
+            width: 100%;
+            background: none;
+            border: none;
+            border-bottom: 1px solid var(--border-light);
+            padding: 16px 0;
+            color: white;
+            font-size: 1.2rem;
+            font-family: var(--font-body);
+            transition: border-color 0.3s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--color-accent-blue);
+        }
+
+        .form-label {
+            position: absolute;
+            top: 16px;
+            left: 0;
+            color: var(--color-text-secondary);
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+
+        .form-input:focus ~ .form-label,
+        .form-input:valid ~ .form-label {
+            top: -10px;
+            font-size: 0.8rem;
+            color: var(--color-accent-blue);
+        }
+
+        .submit-btn {
+            background: white;
+            color: black;
+            padding: 20px 60px;
+            border-radius: 100px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: transform 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .submit-btn:hover { transform: scale(1.05); }
+
+        footer {
+            border-top: 1px solid var(--border-light);
+            padding: 80px 0;
             text-align: center;
         }
 
-        .footer-cta-text {
-            font-family: var(--font-display);
-            font-size: clamp(3rem, 10vw, 8rem);
-            line-height: 0.9;
-            text-transform: uppercase;
-            margin-bottom: 40px;
-            color: var(--color-text-primary);
-        }
-
-        .footer-btn {
-            display: inline-block;
-            background: white;
-            color: black;
-            font-size: 18px;
-            font-weight: 700;
-            padding: 24px 48px;
-            border-radius: 100px;
-            text-transform: uppercase;
-            transition: transform 0.3s var(--ease-bounce);
-        }
-
-        .footer-btn:hover { transform: scale(1.1); }
-
-        .footer-links {
-            margin-top: 80px;
+        .social-links {
             display: flex;
             justify-content: center;
-            gap: 40px;
+            gap: 30px;
+            margin-bottom: 40px;
         }
 
         .social-icon {
-            font-size: 24px;
+            font-size: 1.5rem;
             color: var(--color-text-secondary);
-            transition: color 0.3s;
+            transition: color 0.3s, transform 0.3s;
         }
-        .social-icon:hover { color: white; }
 
-        .footer-copy {
-            margin-top: 60px;
-            font-family: var(--font-mono);
-            font-size: 12px;
-            color: var(--color-text-tertiary);
+        .social-icon:hover {
+            color: white;
+            transform: translateY(-5px);
         }
 
         /* ========================================================================
-        10.0 MOBILE OPTIMIZATION (THE FIX)
+        13.0 MOBILE RESPONSIVENESS
         ========================================================================
         */
+        @media (max-width: 1024px) {
+            .bento-grid { grid-template-columns: repeat(2, 1fr); }
+            .col-span-2 { grid-column: span 1; }
+        }
+
         @media (max-width: 768px) {
-            .hidden-mobile { display: none; }
-            .hidden-desktop { display: block; }
-
-            /* 1. Mobile Navigation (Bottom Bar) */
-            .navbar-wrapper {
-                top: auto;
-                bottom: 24px;
-                padding: 0 20px;
-            }
-            .navbar-island {
-                width: 100%;
-                justify-content: space-between;
-                padding: 16px 24px;
-            }
-            .nav-menu { display: none; } /* Hide links on mobile, show concise nav */
+            .nav-wrapper { bottom: 20px; top: auto; padding: 0 20px; }
+            .nav-inner { width: 100%; justify-content: space-between; }
+            .nav-links { display: none; } /* Simplified mobile nav */
             
-            /* 2. Stack Fixes */
-            .hero-text-giant { font-size: 22vw; } /* Ensure text fits */
-            .hero-img { 
-                max-width: 100%; 
-                height: 65vh; /* Reduce height so it doesn't get cut off */
-            }
-            .layer-front {
-                bottom: 140px; /* Push credits above the bottom nav */
-                width: 90%;
-            }
-            .hero-credit-card {
-                padding: 16px;
-                width: 100%;
-            }
+            .hero-title-bg { font-size: 20vw; white-space: normal; line-height: 0.8; }
+            .hero-img-container { width: 100%; bottom: 10%; }
+            .hero-card { width: 90%; bottom: 150px; }
 
-            /* 3. Grid Fixes */
             .bento-grid { grid-template-columns: 1fr; }
-            .bento-wide, .bento-tall { grid-column: span 1; grid-row: span 1; }
-            .bento-card { height: 450px; }
+            .col-span-2, .row-span-2 { grid-column: span 1; grid-row: span 1; }
+            .card { min-height: 400px; }
 
-            /* 4. Stats Fix */
-            .stats-grid { grid-template-columns: 1fr 1fr; }
+            .philosophy-grid, .contact-layout, .stats-wrapper {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .section-padding { padding: 100px 0; }
+            .headline { font-size: 2.5rem; }
         }
     </style>
-    <style>
-    /* SERVICES SECTION STYLES */
-    .services-section {
-        padding: 120px 0;
-        background: var(--color-bg-base);
-    }
-
-    .service-item {
-        border-bottom: 1px solid var(--color-border-subtle);
-        padding: 40px 0;
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-        transition: all 0.3s var(--ease-apple);
-        cursor: pointer;
-        group: hover-trigger;
-    }
-
-    .service-item:hover {
-        border-color: white;
-        background: rgba(255,255,255,0.02);
-        padding-left: 20px; /* Slide effect */
-    }
-
-    .svc-left { max-width: 50%; }
-    
-    .svc-num {
-        font-family: var(--font-mono);
-        color: var(--color-accent-blue);
-        margin-bottom: 16px;
-        display: block;
-        font-size: 14px;
-    }
-
-    .svc-title {
-        font-family: var(--font-display);
-        font-size: clamp(2rem, 4vw, 3.5rem);
-        color: var(--color-text-secondary);
-        transition: color 0.3s;
-        text-transform: uppercase;
-        margin: 0;
-    }
-
-    .service-item:hover .svc-title { color: white; }
-
-    .svc-tags {
-        display: flex;
-        gap: 10px;
-        margin-top: 20px;
-    }
-
-    .tag {
-        border: 1px solid var(--color-border-subtle);
-        padding: 6px 14px;
-        border-radius: 100px;
-        font-size: 12px;
-        color: var(--color-text-tertiary);
-    }
-
-    .svc-icon {
-        font-size: 40px;
-        color: white;
-        opacity: 0;
-        transform: translateX(-20px);
-        transition: all 0.3s var(--ease-bounce);
-    }
-
-    .service-item:hover .svc-icon { opacity: 1; transform: translateX(0); }
-
-    @media (max-width: 768px) {
-        .service-item { flex-direction: column; gap: 20px; }
-        .svc-left { max-width: 100%; }
-        .svc-icon { display: none; }
-    }
-</style>
 </head>
+
 <body>
 
-    <div class="navbar-wrapper">
-        <nav class="navbar-island">
-            <a href="#" class="nav-logo">SC.</a>
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
+    <div class="preloader">
+        <div class="loader-text">
+            <span id="counter">0</span>%
+        </div>
+        <div class="loader-bar">
+            <div class="loader-fill" id="loader-fill"></div>
+        </div>
+    </div>
+
+    <div class="nav-wrapper">
+        <nav class="nav-inner magnetic-wrap">
+            <a href="#" class="logo magnetic-item">SC.</a>
             
-            <div class="nav-menu hidden-mobile">
-                <a href="#work" class="nav-link active">Work</a>
-                <a href="#about" class="nav-link">Studio</a>
-                <a href="#contact" class="nav-link">Contact</a>
+            <div class="nav-links">
+                <a href="#about" class="nav-link magnetic-item">About</a>
+                <a href="#work" class="nav-link magnetic-item">Work</a>
+                <a href="#philosophy" class="nav-link magnetic-item">Process</a>
             </div>
 
-            <a href="mailto:shakespearechabungbam12@gmail.com" class="nav-cta">Let's Talk</a>
+            <a href="#contact" class="nav-cta magnetic-item">Let's Talk</a>
         </nav>
     </div>
 
-    <section class="hero-section" id="home">
-        <div class="stack-container">
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1 class="hero-title-bg" id="parallax-text">SPIDER-MAN</h1>
             
-            <div class="layer-back" id="parallax-text">
-                <h1 class="hero-text-giant">SPIDER-MAN</h1>
+            <div class="hero-img-container" id="parallax-img">
+                <img src="spiderweb.png" alt="Creative Engineer" class="hero-img" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/GitHub_Invertocat_Logo.svg/1200px-GitHub_Invertocat_Logo.svg.png'; this.style.filter='invert(1)'">
             </div>
 
-            <div class="layer-middle" id="parallax-img">
-                <img src="spiderweb.png" alt="Spiderman Design" class="hero-img">
+            <div class="hero-card" id="parallax-card">
+                <span class="badge">Portfolio v2.0</span>
+                <h3>Designed by Shakespeare</h3>
+                <p style="color: #aaa; font-size: 0.9rem; margin-top: 5px;">MCA Scholar & Design Engineer</p>
             </div>
-
-            <div class="layer-front" id="parallax-card">
-                <div class="hero-credit-card">
-                    <span class="marvel-badge">MARVEL STUDIOS</span>
-                    <h2 class="credit-title">Design by Shakespeare</h2>
-                    <p class="credit-sub">Visual Engineering / Concept Art</p>
-                </div>
-            </div>
-
         </div>
     </section>
 
-    <div class="marquee-section">
-        <div class="marquee-track">
-            <div class="marquee-item">Creative Engineer <i class="fa-solid fa-bolt"></i></div>
-            <div class="marquee-item">MCA Scholar <i class="fa-solid fa-graduation-cap"></i></div>
-            <div class="marquee-item">Full Stack Dev <i class="fa-solid fa-code"></i></div>
-            <div class="marquee-item">UI/UX Design <i class="fa-solid fa-pen-nib"></i></div>
-            <div class="marquee-item">Creative Engineer <i class="fa-solid fa-bolt"></i></div>
-            <div class="marquee-item">MCA Scholar <i class="fa-solid fa-graduation-cap"></i></div>
-            <div class="marquee-item">Full Stack Dev <i class="fa-solid fa-code"></i></div>
-            <div class="marquee-item">UI/UX Design <i class="fa-solid fa-pen-nib"></i></div>
+    <div class="marquee">
+        <div class="marquee-content">
+            <div class="marquee-item">Graphic Design <i class="fa-solid fa-pen-nib"></i></div>
+            <div class="marquee-item">Web Engineering <i class="fa-solid fa-code"></i></div>
+            <div class="marquee-item">Manipur History <i class="fa-solid fa-landmark"></i></div>
+            <div class="marquee-item">Creative Logic <i class="fa-solid fa-brain"></i></div>
+            <div class="marquee-item">Graphic Design <i class="fa-solid fa-pen-nib"></i></div>
+            <div class="marquee-item">Web Engineering <i class="fa-solid fa-code"></i></div>
+            <div class="marquee-item">Manipur History <i class="fa-solid fa-landmark"></i></div>
+            <div class="marquee-item">Creative Logic <i class="fa-solid fa-brain"></i></div>
         </div>
     </div>
 
-    <section class="profile-section" id="about">
+    <section class="section-padding" id="about">
         <div class="container">
-            <div class="bio-header">
-                <span class="section-tag">01 // THE ARCHITECT</span>
-                <h2 class="bio-headline">Engineering digital<br>experiences that <span style="color: var(--color-accent-blue);">matter.</span></h2>
-                <p class="bio-body">
-                    I am Shakespeare Chabungbam. A Master of Computer Applications (MCA) student based in Manipur. 
-                    I don't just write code; I engineer visual systems. Combining the robust logic of software engineering 
-                    with the emotive power of brand identity.
-                </p>
+            <div class="section-header">
+                <span class="tagline reveal-text">01 // The Architect</span>
+                <h2 class="headline reveal-text">I bridge the gap between <span class="text-gradient">Logic</span> and <span class="text-gradient">Emotion.</span></h2>
             </div>
 
-            <div class="stats-grid">
-                <div class="stat-item">
+            <div class="contact-layout"> <div class="fade-in-up">
+                    <p class="body-text">
+                        I am Shakespeare Chabungbam, an MCA student and Graphic Designer based in Manipur. 
+                        My work exists at the intersection of technical precision and artistic expression.
+                        From restoring historical photographs of the Anglo-Manipur War to engineering complex stock prediction models in Python.
+                    </p>
+                    <br>
+                    <p class="body-text">
+                        Whether it's practicing Thang-Ta or coding Deep Neural Networks, I believe in discipline and flow.
+                    </p>
+                </div>
+                
+                <div class="skills-wrapper fade-in-up" style="width: 100%;">
+                    <div class="skill-group">
+                        <div class="skill-header"><span>Visual Design</span><span>95%</span></div>
+                        <div class="skill-track"><div class="skill-fill fill-blue" style="width: 95%"></div></div>
+                    </div>
+                    <div class="skill-group">
+                        <div class="skill-header"><span>Full Stack (MERN)</span><span>85%</span></div>
+                        <div class="skill-track"><div class="skill-fill fill-volt" style="width: 85%"></div></div>
+                    </div>
+                    <div class="skill-group">
+                        <div class="skill-header"><span>Python / AI</span><span>80%</span></div>
+                        <div class="skill-track"><div class="skill-fill fill-blue" style="width: 80%"></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stats-wrapper">
+                <div class="stat-box fade-in-up" style="transition-delay: 0.1s">
                     <h3>3+</h3>
                     <p>Years Experience</p>
                 </div>
-                <div class="stat-item">
+                <div class="stat-box fade-in-up" style="transition-delay: 0.2s">
                     <h3>20+</h3>
                     <p>Projects Shipped</p>
                 </div>
-                <div class="stat-item">
-                    <h3>100%</h3>
-                    <p>Client Satisfaction</p>
-                </div>
-                <div class="stat-item">
+                <div class="stat-box fade-in-up" style="transition-delay: 0.3s">
                     <h3>MCA</h3>
                     <p>Master's Degree</p>
                 </div>
+                <div class="stat-box fade-in-up" style="transition-delay: 0.4s">
+                    <h3>100%</h3>
+                    <p>Dedication</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="skills-section" id="skills">
-    <div class="container">
-        <span class="section-tag">01.5 // CAPABILITIES</span>
-        
-        <div class="skill-container">
-            
-            <div class="skill-column">
-                <h3 class="skill-col-title"><i class="fa-solid fa-code" style="color: var(--color-accent-blue)"></i> ENGINEERING</h3>
-                
-                <div class="skill-bar-wrapper">
-                    <div class="skill-meta"><span>Full Stack (MERN)</span><span>90%</span></div>
-                    <div class="progress-track"><div class="progress-fill" style="width: 90%"></div></div>
-                </div>
-
-                <div class="skill-bar-wrapper">
-                    <div class="skill-meta"><span>Python / AI Logic</span><span>85%</span></div>
-                    <div class="progress-track"><div class="progress-fill" style="width: 85%"></div></div>
-                </div>
-
-                <div class="skill-bar-wrapper">
-                    <div class="skill-meta"><span>Database (SQL/Mongo)</span><span>80%</span></div>
-                    <div class="progress-track"><div class="progress-fill" style="width: 80%"></div></div>
-                </div>
-            </div>
-
-            <div class="skill-column">
-                <h3 class="skill-col-title"><i class="fa-solid fa-pen-nib" style="color: var(--color-accent-volt)"></i> DESIGN</h3>
-                
-                <div class="skill-bar-wrapper">
-                    <div class="skill-meta"><span>UI/UX Systems</span><span>95%</span></div>
-                    <div class="progress-track"><div class="progress-fill creative-fill" style="width: 95%"></div></div>
-                </div>
-
-                <div class="skill-bar-wrapper">
-                    <div class="skill-meta"><span>Brand Identity</span><span>90%</span></div>
-                    <div class="progress-track"><div class="progress-fill creative-fill" style="width: 90%"></div></div>
-                </div>
-
-                <div class="skill-bar-wrapper">
-                    <div class="skill-meta"><span>Motion / 3D</span><span>75%</span></div>
-                    <div class="progress-track"><div class="progress-fill creative-fill" style="width: 75%"></div></div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-    <section class="work-section" id="work">
+    <section class="section-padding" id="work" style="background: var(--color-bg-surface);">
         <div class="container">
-            <span class="section-tag" style="margin-bottom: 40px; display:block;">02 // SELECTED WORKS</span>
+            <span class="tagline reveal-text">02 // Selected Works</span>
+            <h2 class="headline reveal-text" style="margin-bottom: 60px;">Digital <span style="color: var(--color-accent-blue)">Masterpieces.</span></h2>
             
             <div class="bento-grid">
                 
-                <div class="bento-card bento-wide">
-                    <div class="grad-1 card-img-bg"></div>
-                    <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&q=80" class="card-img-bg" alt="ShMusic" onerror="this.style.display='none'">
-                    
-                    <div class="card-content">
-                        <span class="project-category">Flagship Project</span>
-                        <h3 class="project-title">ShMusic.com</h3>
-                        <p class="project-desc">A high-fidelity audio streaming platform built with React. Features real-time visualization, cloud sync, and gapless playback.</p>
+                <div class="card col-span-2 fade-in-up" data-tilt>
+                    <div class="card-inner">
+                        <div class="grad-dark card-bg"></div>
+                        <img src="https://images.unsplash.com/photo-1614680376593-902f74cf0d41?q=80&w=2574&auto=format&fit=crop" class="card-bg" alt="ShMusic">
+                        
+                        <div class="content-rel">
+                            <span class="project-tag">Flagship</span>
+                            <h3 class="project-title">ShMusic Premium</h3>
+                            <p class="project-desc">A high-fidelity audio streaming platform with React & Visualizers. Inspired by Bon Jovi albums.</p>
+                        </div>
                     </div>
                 </div>
 
-                <div class="bento-card">
-                    <div class="grad-2 card-img-bg"></div>
-                    <img src="https://images.unsplash.com/photo-1626785774573-4b799314346d?auto=format&fit=crop&q=80" class="card-img-bg" alt="Branding" onerror="this.style.display='none'">
-                    
-                    <div class="card-content">
-                        <span class="project-category">Brand Identity</span>
-                        <h3 class="project-title">MANFETE 25</h3>
-                        <p class="project-desc">Complete visual system for the largest cultural festival in Manipur.</p>
+                <div class="card fade-in-up" data-tilt>
+                    <div class="card-inner">
+                        <div class="grad-purple card-bg"></div>
+                        
+                        <div class="content-rel">
+                            <span class="project-tag">Identity</span>
+                            <h3 class="project-title">Manfete 25</h3>
+                            <p class="project-desc">Cultural branding and poster design for the largest youth festival.</p>
+                        </div>
                     </div>
                 </div>
 
-                <div class="bento-card">
-                    <div class="grad-3 card-img-bg"></div>
-                    <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&q=80" class="card-img-bg" alt="Social" onerror="this.style.display='none'">
-                    
-                    <div class="card-content">
-                        <span class="project-category">Growth</span>
-                        <h3 class="project-title">Artory</h3>
-                        <p class="project-desc">Social media strategy and design for a creative community.</p>
+                <div class="card fade-in-up" data-tilt>
+                    <div class="card-inner">
+                        <div class="grad-blue card-bg"></div>
+                        
+                        <div class="content-rel">
+                            <span class="project-tag">AI Model</span>
+                            <h3 class="project-title">Stock LSTM</h3>
+                            <p class="project-desc">Python-based Long Short-Term Memory model for market prediction.</p>
+                        </div>
                     </div>
                 </div>
 
-                <div class="bento-card bento-wide">
-                    <div class="grad-1 card-img-bg" style="background: linear-gradient(135deg, #0044ff, #001144);"></div>
-                    
-                    <div class="card-content">
-                        <span class="project-category">Development</span>
-                        <h3 class="project-title">FinTech Dashboard</h3>
-                        <p class="project-desc">Real-time financial data visualization dashboard for enterprise clients.</p>
+                <div class="card col-span-2 fade-in-up" data-tilt>
+                    <div class="card-inner">
+                        <div class="grad-dark card-bg"></div>
+                        <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2670&auto=format&fit=crop" class="card-bg" alt="Retro Tech">
+                        
+                        <div class="content-rel">
+                            <span class="project-tag">Restoration</span>
+                            <h3 class="project-title">Project: Heritage</h3>
+                            <p class="project-desc">Colorizing and restoring 19th-century Manipuri photographs using Deep Learning.</p>
+                        </div>
                     </div>
                 </div>
 
@@ -884,133 +896,226 @@
         </div>
     </section>
 
-    <section class="services-section">
-    <div class="container">
-        <span class="section-tag">02.5 // SERVICES</span>
-        
-        <div class="service-item">
-            <div class="svc-left">
-                <span class="svc-num">01</span>
-                <h3 class="svc-title">Web Engineering</h3>
-                <div class="svc-tags">
-                    <span class="tag">React JS</span>
-                    <span class="tag">Performance</span>
-                    <span class="tag">SEO</span>
-                </div>
-            </div>
-            <i class="fa-solid fa-arrow-right svc-icon"></i>
-        </div>
-
-        <div class="service-item">
-            <div class="svc-left">
-                <span class="svc-num">02</span>
-                <h3 class="svc-title">Brand Visuals</h3>
-                <div class="svc-tags">
-                    <span class="tag">Logo Design</span>
-                    <span class="tag">Posters (Manfete)</span>
-                    <span class="tag">Typography</span>
-                </div>
-            </div>
-            <i class="fa-solid fa-arrow-right svc-icon"></i>
-        </div>
-
-        <div class="service-item">
-            <div class="svc-left">
-                <span class="svc-num">03</span>
-                <h3 class="svc-title">App Development</h3>
-                <div class="svc-tags">
-                    <span class="tag">iOS / Android</span>
-                    <span class="tag">UI Logic</span>
-                    <span class="tag">API Integration</span>
-                </div>
-            </div>
-            <i class="fa-solid fa-arrow-right svc-icon"></i>
-        </div>
-
-    </div>
-</section>
-
-    <footer class="footer-section" id="contact">
+    <section class="section-padding" id="philosophy">
         <div class="container">
-            <span class="section-tag">03 // CONTACT</span>
-            <h2 class="footer-cta-text">Let's Build<br>The Future.</h2>
-            <a href="mailto:shakespearechabungbam12@gmail.com" class="footer-btn">Get In Touch</a>
+            <span class="tagline reveal-text">03 // The Process</span>
+            <h2 class="headline reveal-text" style="margin-bottom: 80px;">How I <span class="text-gradient">Build.</span></h2>
 
-            <div class="footer-links">
-                <a href="#" class="social-icon"><i class="fa-brands fa-instagram"></i></a>
-                <a href="#" class="social-icon"><i class="fa-brands fa-linkedin"></i></a>
-                <a href="#" class="social-icon"><i class="fa-brands fa-github"></i></a>
-                <a href="#" class="social-icon"><i class="fa-brands fa-dribbble"></i></a>
+            <div class="philosophy-grid">
+                <div class="philo-card fade-in-up">
+                    <i class="fa-solid fa-magnifying-glass philo-icon"></i>
+                    <h3>01. Discovery</h3>
+                    <p class="body-text" style="font-size: 1rem; margin-top: 15px;">
+                        Understanding the core problem. Whether it's a UI bottleneck or a historical inconsistency. I research deeply before touching a pixel or a line of code.
+                    </p>
+                </div>
+                
+                <div class="philo-card fade-in-up" style="transition-delay: 0.2s">
+                    <i class="fa-solid fa-pencil-ruler philo-icon"></i>
+                    <h3>02. Architecture</h3>
+                    <p class="body-text" style="font-size: 1rem; margin-top: 15px;">
+                        Drafting the blueprint. Wireframes in Figma, Schema design in SQL, or concept art for branding. This is where structure meets imagination.
+                    </p>
+                </div>
+
+                <div class="philo-card fade-in-up" style="transition-delay: 0.3s">
+                    <i class="fa-solid fa-code philo-icon"></i>
+                    <h3>03. Development</h3>
+                    <p class="body-text" style="font-size: 1rem; margin-top: 15px;">
+                        Clean, semantic code. I write accessible HTML, efficient CSS, and robust JavaScript/Python logic. Performance is not an afterthought.
+                    </p>
+                </div>
+
+                <div class="philo-card fade-in-up" style="transition-delay: 0.4s">
+                    <i class="fa-solid fa-rocket philo-icon"></i>
+                    <h3>04. Deployment</h3>
+                    <p class="body-text" style="font-size: 1rem; margin-top: 15px;">
+                        Launching with confidence. CI/CD pipelines, SEO optimization, and rigorous testing to ensure the product stands the test of time.
+                    </p>
+                </div>
             </div>
+        </div>
+    </section>
 
-            <p class="footer-copy">&copy; 2025 Shakespeare Chabungbam. Designed & Engineered in Manipur, India.</p>
+    <section class="section-padding" id="contact" style="background: var(--color-bg-surface-2);">
+        <div class="container">
+            <span class="tagline reveal-text">04 // Contact</span>
+            
+            <div class="contact-layout">
+                <div>
+                    <h2 class="headline reveal-text">Let's create something <br><span style="color: var(--color-accent-volt)">Extraordinary.</span></h2>
+                    <p class="body-text" style="margin-bottom: 40px;">
+                        Available for freelance projects, collaborations, or full-time roles. 
+                        Let's discuss design, code, or Manipuri art history.
+                    </p>
+                    
+                    <div class="social-links" style="justify-content: flex-start;">
+                        <a href="#" class="social-icon magnetic-item"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="social-icon magnetic-item"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="#" class="social-icon magnetic-item"><i class="fa-brands fa-github"></i></a>
+                        <a href="mailto:shakespearechabungbam12@gmail.com" class="social-icon magnetic-item"><i class="fa-solid fa-envelope"></i></a>
+                    </div>
+                </div>
+
+                <form class="fade-in-up">
+                    <div class="form-group">
+                        <input type="text" class="form-input" id="name" required>
+                        <label for="name" class="form-label">Your Name</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-input" id="email" required>
+                        <label for="email" class="form-label">Email Address</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-input" id="project" required>
+                        <label for="project" class="form-label">Project Details</label>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn magnetic-item">
+                        Send Message <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <h2 style="font-size: 2rem; margin-bottom: 20px;">SC.</h2>
+            <p style="color: var(--color-text-secondary); font-size: 0.9rem;">
+                &copy; 2025 Shakespeare Chabungbam. <br>
+                Engineered with <i class="fa-solid fa-heart" style="color: var(--color-accent-red)"></i> in Manipur, India.
+            </p>
         </div>
     </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // 1. SELECTORS
+            
+            // 1. PRELOADER LOGIC
+            const counter = document.getElementById('counter');
+            const fill = document.getElementById('loader-fill');
+            const preloader = document.querySelector('.preloader');
+            let count = 0;
+
+            const updateCounter = () => {
+                count += Math.floor(Math.random() * 5) + 1;
+                if (count > 100) count = 100;
+                
+                counter.textContent = count;
+                fill.style.width = `${count}%`;
+
+                if (count < 100) {
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    setTimeout(() => {
+                        preloader.style.transform = 'translateY(-100%)';
+                        preloader.style.transition = 'transform 0.8s cubic-bezier(0.7, 0, 0.3, 1)';
+                    }, 500);
+                }
+            };
+            requestAnimationFrame(updateCounter);
+
+            // 2. CUSTOM MOUSE CURSOR
+            const cursorDot = document.querySelector('.cursor-dot');
+            const cursorOutline = document.querySelector('.cursor-outline');
+            
+            window.addEventListener('mousemove', (e) => {
+                const posX = e.clientX;
+                const posY = e.clientY;
+
+                // Dot follows instantly
+                cursorDot.style.left = `${posX}px`;
+                cursorDot.style.top = `${posY}px`;
+
+                // Outline follows with lag
+                cursorOutline.animate({
+                    left: `${posX}px`,
+                    top: `${posY}px`
+                }, { duration: 500, fill: "forwards" });
+            });
+
+            // Hover effects
+            const hoverables = document.querySelectorAll('a, button, .card');
+            hoverables.forEach(el => {
+                el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
+                el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
+            });
+
+            // 3. PARALLAX HERO
             const pText = document.getElementById('parallax-text');
             const pImg = document.getElementById('parallax-img');
             const pCard = document.getElementById('parallax-card');
-            const hero = document.getElementById('home');
-
-            // 2. PARALLAX LOGIC (Optimized)
-            // We use standard scroll listener but optimized with requestAnimationFrame
-            let lastScrollY = window.scrollY;
-            let ticking = false;
-
-            function updateParallax() {
-                const scrollY = window.scrollY;
-                const heroHeight = hero.offsetHeight;
-
-                // Only calculate if Hero is in view
-                if (scrollY <= heroHeight) {
-                    // Text moves DOWN slowly (Background)
-                    pText.style.transform = `translateY(${scrollY * 0.4}px) scale(${1 + scrollY * 0.0005})`;
-                    
-                    // Image moves DOWN faster (Middle Ground)
-                    // We only move it slightly to keep it grounded
-                    pImg.style.transform = `translateY(${scrollY * 0.15}px)`;
-
-                    // Card moves UP (Foreground)
-                    // Creates a converging effect
-                    pCard.style.transform = `translate(-50%, -${scrollY * 0.3}px)`;
-                }
-
-                ticking = false;
-            }
-
+            
             window.addEventListener('scroll', () => {
-                if (!ticking) {
-                    window.requestAnimationFrame(updateParallax);
-                    ticking = true;
+                const scrollY = window.scrollY;
+                if (scrollY < 800) {
+                    pText.style.transform = `translate(-50%, -50%) translateY(${scrollY * 0.5}px) scale(${1 + scrollY * 0.0005})`;
+                    pImg.style.transform = `translateX(-50%) translateY(${scrollY * 0.2}px)`;
+                    pCard.style.transform = `translateY(-${scrollY * 0.4}px)`;
                 }
             });
 
-            // 3. NAV BAR SCROLL EFFECT
-            const navbar = document.querySelector('.navbar-island');
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 50) {
-                    navbar.style.background = 'rgba(5, 5, 5, 0.9)';
-                    navbar.style.padding = '10px 24px';
-                } else {
-                    navbar.style.background = 'rgba(20, 20, 20, 0.6)';
-                    navbar.style.padding = '12px 24px';
-                }
+            // 4. INTERSECTION OBSERVER (Scroll Reveals)
+            const observerOptions = {
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        // Trigger skill bars specifically
+                        if(entry.target.classList.contains('skill-fill')) {
+                            entry.target.style.transform = 'scaleX(1)';
+                        }
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.fade-in-up, .reveal-text, .skill-fill').forEach(el => {
+                observer.observe(el);
+            });
+
+            // 5. 3D TILT EFFECT FOR CARDS
+            const cards = document.querySelectorAll('[data-tilt]');
+            
+            cards.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    
+                    const rotateX = ((y - centerY) / centerY) * -5; // Max rotation deg
+                    const rotateY = ((x - centerX) / centerX) * 5;
+
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = `perspective(1000px) rotateX(0) rotateY(0) scale(1)`;
+                });
+            });
+
+            // 6. MAGNETIC BUTTONS (Nav items)
+            const magnets = document.querySelectorAll('.magnetic-item');
+            magnets.forEach(magnet => {
+                magnet.addEventListener('mousemove', (e) => {
+                    const rect = magnet.getBoundingClientRect();
+                    const x = e.clientX - rect.left - rect.width / 2;
+                    const y = e.clientY - rect.top - rect.height / 2;
+                    
+                    magnet.style.transform = `translate(${x * 0.3}px, ${y * 0.5}px)`;
+                });
+
+                magnet.addEventListener('mouseleave', () => {
+                    magnet.style.transform = 'translate(0, 0)';
+                });
             });
         });
     </script>
-    <script>
-    const observerSkills = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.transform = 'scaleX(1)';
-            }
-        });
-    });
-    document.querySelectorAll('.progress-fill').forEach((el) => observerSkills.observe(el));
-</script>
-    
 </body>
 </html>
