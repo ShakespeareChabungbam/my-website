@@ -163,7 +163,7 @@
         #bg-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
 
         /* ========================================================================
-           NEW: 3-LAYER PARALLAX (Text < Image < Credit)
+           NEW: SMOOTH 3-LAYER PARALLAX WITH GRADUATED BOTTOM BLUR
         ======================================================================== */
         .parallax-window {
             position: relative;
@@ -176,7 +176,7 @@
             background-color: #050505;
         }
 
-        /* LAYER 1: Background Text (Moves Slow, Behind Image) */
+        /* LAYER 1: Background Text */
         .parallax-content-layer {
             position: absolute;
             z-index: 1;
@@ -186,39 +186,63 @@
             text-align: center;
             width: 100%;
             opacity: 0;
-            transition: all 1s var(--ease-out-expo);
+            will-change: opacity, transform;
+            transition: opacity 0.8s ease-out;
         }
         
         .parallax-content-layer.visible {
             opacity: 1;
-            /* Offset transform handled by JS for Parallax */
         }
 
-        /* LAYER 2: Image (Anchored Bottom, Middle Layer) */
+        /* LAYER 2: Image (Foreground) */
         .parallax-fg-image {
             position: absolute;
             z-index: 2;
             bottom: 0;
             left: 0;
             width: 100%;
-            height: 90%; 
+            height: 95%; 
             background-image: url('spiderweb.png');
             background-repeat: no-repeat;
             background-position: center bottom;
             background-size: contain; 
             pointer-events: none;
-            /* Will be transformed slightly by JS */
             will-change: transform;
+            transform-origin: bottom center;
         }
 
-        /* LAYER 3: Designer Credit (Always Top, Never Hidden) */
+        /* LAYER 3: Designer Credit (Top) */
         .designer-credit-container {
             position: absolute;
-            z-index: 3; /* Highest Layer */
+            z-index: 10;
             bottom: 40px;
             left: 0;
             width: 100%;
             text-align: center;
+            pointer-events: none;
+        }
+
+        /* LAYER 4: GRADUATED BOTTOM BLUR (Using Mask) */
+        .parallax-bottom-blur {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 120px; /* Short height for "little area" */
+            z-index: 5; /* Above image */
+            
+            /* 1. Base Gradient to blend color */
+            background: linear-gradient(to top, var(--bg-surface-1) 20%, transparent 100%);
+            
+            /* 2. The Blur Effect */
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            
+            /* 3. The Mask: Fades the blur out as it goes up 
+               Black = Visible (blurred), Transparent = Invisible (not blurred) */
+            mask-image: linear-gradient(to top, black 0%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to top, black 0%, transparent 100%);
+            
             pointer-events: none;
         }
 
@@ -254,7 +278,7 @@
             font-size: 16px;
             letter-spacing: 0.4em;
             text-transform: uppercase;
-            background: rgba(0,0,0,0.6); /* Slight background for readability */
+            background: rgba(0,0,0,0.6); 
             padding: 8px 16px;
             border-radius: 4px;
             backdrop-filter: blur(4px);
@@ -414,6 +438,8 @@
             <div class="designer-credit-container">
                 <div class="designer-credit">Design By: Shakespeare</div>
             </div>
+
+            <div class="parallax-bottom-blur"></div>
             
         </div>
         <section class="py-120" style="background-color: var(--bg-surface-1);">
@@ -616,13 +642,26 @@
             initParticles(); animateParticles(); window.addEventListener('resize', initParticles);
 
             // =========================================================
-            // NEW: CINEMATIC PARALLAX LOGIC (Refined for depth)
+            // NEW: CINEMATIC PARALLAX LOGIC (Smooth + Reveal + Scale)
             // =========================================================
             const parallaxSection = document.getElementById('parallax-section');
             const foregroundImg = document.getElementById('parallax-fg');
             const contentLayer = document.querySelector('.parallax-content-layer');
 
             if (parallaxSection && foregroundImg) {
+                // Use requestAnimationFrame loop for smoothest performance
+                let isRunning = false;
+
+                const onScroll = () => {
+                    if (!isRunning) {
+                        window.requestAnimationFrame(() => {
+                            updateCinematicParallax();
+                            isRunning = false;
+                        });
+                        isRunning = true;
+                    }
+                };
+
                 const updateCinematicParallax = () => {
                     const rect = parallaxSection.getBoundingClientRect();
                     const viewHeight = window.innerHeight;
@@ -630,26 +669,31 @@
                     // Only run when visible
                     if (rect.top < viewHeight && rect.bottom > 0) {
                         
-                        // 1. Text Reveal Effect
+                        // 1. Text Reveal Effect (Simple Fade)
                         if (rect.top < viewHeight * 0.6) {
                             contentLayer.classList.add('visible');
                         } else {
                             contentLayer.classList.remove('visible');
                         }
 
+                        // Calculate Scroll Progress (0.0 to 1.0)
+                        const totalDist = viewHeight + rect.height;
+                        const scrolledDist = viewHeight - rect.top;
+                        const scrollPercent = Math.max(0, Math.min(1, scrolledDist / totalDist));
+
                         // 2. Background Text Parallax (Slower speed)
-                        const scrollPercent = (viewHeight - rect.top) / (viewHeight + rect.height);
-                        const textMoveY = (scrollPercent * 50) - 25;
+                        const textMoveY = (scrollPercent * 80) - 40;
                         contentLayer.style.transform = `translate(-50%, calc(-50% + ${textMoveY}px))`;
 
-                        // 3. Foreground Image (Subtle movement for stability)
-                        // We move it very slightly opposite to scroll to anchor it better
-                        const imgMoveY = (scrollPercent * 20) - 10; 
-                        foregroundImg.style.transform = `translateY(${imgMoveY}px)`;
+                        // 3. Foreground Image Animation (Bottom-Up + Scale)
+                        const imgTranslateY = 150 - (scrollPercent * 200); // Moves from 150px down to -50px up
+                        const imgScale = 0.9 + (scrollPercent * 0.2);      // Scales from 0.9 to 1.1
+
+                        foregroundImg.style.transform = `translateY(${imgTranslateY}px) scale(${imgScale})`;
                     }
                 };
 
-                window.addEventListener('scroll', updateCinematicParallax, { passive: true });
+                window.addEventListener('scroll', onScroll, { passive: true });
                 updateCinematicParallax();
             }
         });
