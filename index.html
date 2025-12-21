@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="no-js">
+<html lang="en" class="no-js" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -7,7 +7,7 @@
     
     <title>Shakespeare Chabungbam — Design. Code. Create.</title>
     <meta name="description" content="Portfolio of Shakespeare Chabungbam. Master of Computer Applications student, Graphic Designer, and Full Stack Developer based in Manipur, India.">
-    <meta name="keywords" content="Shakespeare Chabungbam, Graphic Designer, MCA, NIELIT, Web Developer, Manipur, Portfolio, UI/UX">
+    <meta name="keywords" content="Shakespeare Chabungbam, Graphic Designer, MCA, NIELIT, Web Developer, Manipur, Portfolio, UI/UX, Apple Style, Dark Mode">
     <meta name="author" content="Shakespeare Chabungbam">
     <meta name="theme-color" content="#000000">
 
@@ -19,149 +19,191 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         /* ========================================================================
-        1.0 DESIGN TOKENS & ROOT VARIABLES
+        1.0 CSS RESET & NORMALIZATION (Comprehensive)
         ========================================================================
         */
-        :root {
-            /* Color Palette: Cupertino Dark Mode */
-            --color-bg-primary: #000000;
-            --color-bg-secondary: #050505;
-            --color-bg-tertiary: #101010;
-            
-            --color-text-primary: #F5F5F7;
-            --color-text-secondary: #86868B;
-            --color-text-tertiary: #6E6E73;
-            
-            --color-accent-blue: #2997FF;
-            --color-accent-purple: #BF5AF2;
-            --color-accent-indigo: #5E5CE6;
-            --color-accent-teal: #64D2FF;
-            
-            --color-border: rgba(255, 255, 255, 0.12);
-            --color-border-hover: rgba(255, 255, 255, 0.24);
-            
-            /* Glassmorphism Tokens */
-            --glass-background: rgba(29, 29, 31, 0.72);
-            --glass-border: rgba(255, 255, 255, 0.08);
-            --glass-blur: 20px;
-            --glass-saturation: 180%;
-            
-            /* Spacing Scale (8pt grid) */
-            --space-2: 2px;
-            --space-4: 4px;
-            --space-8: 8px;
-            --space-12: 12px;
-            --space-16: 16px;
-            --space-24: 24px;
-            --space-32: 32px;
-            --space-40: 40px;
-            --space-48: 48px;
-            --space-64: 64px;
-            --space-80: 80px;
-            --space-120: 120px;
-            
-            /* Typography Scale */
-            --font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            --font-family-mono: 'JetBrains Mono', monospace;
-            
-            --text-xs: 12px;
-            --text-sm: 14px;
-            --text-base: 16px;
-            --text-lg: 18px;
-            --text-xl: 20px;
-            --text-2xl: 24px;
-            --text-3xl: 30px;
-            --text-4xl: 36px;
-            --text-5xl: 48px;
-            --text-6xl: 60px;
-            --text-display: 80px;
-            
-            /* Layout */
-            --container-width: 1080px;
-            --container-padding: 24px;
-            --header-height: 54px;
-            
-            /* Radius */
-            --radius-sm: 8px;
-            --radius-md: 12px;
-            --radius-lg: 20px;
-            --radius-xl: 32px;
-            --radius-full: 9999px;
-            
-            /* Animation Curves */
-            --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-            --ease-in-out-circ: cubic-bezier(0.85, 0, 0.15, 1);
-            --transition-fast: 200ms var(--ease-out-expo);
-            --transition-normal: 400ms var(--ease-out-expo);
-            --transition-slow: 800ms var(--ease-out-expo);
-        }
-
-        /* ========================================================================
-        2.0 RESET & BASE STYLES
-        ========================================================================
-        */
-        *, *::before, *::after {
-            box-sizing: border-box;
+        html, body, div, span, applet, object, iframe,
+        h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+        a, abbr, acronym, address, big, cite, code,
+        del, dfn, em, img, ins, kbd, q, s, samp,
+        small, strike, strong, sub, sup, tt, var,
+        b, u, i, center,
+        dl, dt, dd, ol, ul, li,
+        fieldset, form, label, legend,
+        table, caption, tbody, tfoot, thead, tr, th, td,
+        article, aside, canvas, details, embed, 
+        figure, figcaption, footer, header, hgroup, 
+        menu, nav, output, ruby, section, summary,
+        time, mark, audio, video {
             margin: 0;
             padding: 0;
-            outline: none;
+            border: 0;
+            font-size: 100%;
+            font: inherit;
+            vertical-align: baseline;
         }
-
-        html {
-            font-size: 16px;
-            scroll-behavior: smooth;
-            background-color: var(--color-bg-primary);
-            text-rendering: optimizeLegibility;
+        /* HTML5 display-role reset for older browsers */
+        article, aside, details, figcaption, figure, 
+        footer, header, hgroup, menu, nav, section {
+            display: block;
+        }
+        body {
+            line-height: 1;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
-
-        body {
-            font-family: var(--font-family-base);
-            color: var(--color-text-primary);
-            line-height: 1.5;
-            overflow-x: hidden;
-            position: relative;
+        ol, ul {
+            list-style: none;
         }
-
-        ::selection {
-            background: var(--color-accent-blue);
-            color: #FFFFFF;
+        blockquote, q {
+            quotes: none;
         }
-
+        blockquote:before, blockquote:after,
+        q:before, q:after {
+            content: '';
+            content: none;
+        }
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+        *, *::before, *::after {
+            box-sizing: border-box;
+            outline: none;
+        }
         a {
             text-decoration: none;
             color: inherit;
             cursor: pointer;
-            transition: color var(--transition-fast);
         }
-
-        ul, ol {
-            list-style: none;
-        }
-
-        img, video, svg {
-            display: block;
-            max-width: 100%;
-            height: auto;
-        }
-
         button {
-            font-family: inherit;
             border: none;
             background: none;
+            padding: 0;
+            margin: 0;
             cursor: pointer;
+            font-family: inherit;
+            color: inherit;
         }
 
         /* ========================================================================
-        3.0 UTILITY CLASSES
+        2.0 DESIGN SYSTEM & THEME VARIABLES
+        ========================================================================
+        */
+        :root {
+            /* * Global Constants 
+             */
+            --font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            --font-family-mono: 'JetBrains Mono', monospace;
+            
+            --container-width: 1080px;
+            --container-padding: 24px;
+            --header-height: 54px;
+
+            --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+            --ease-in-out-circ: cubic-bezier(0.85, 0, 0.15, 1);
+            
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 18px;
+            --radius-xl: 32px;
+            --radius-full: 9999px;
+
+            /* * THEME: DARK (Default) 
+             * Modeled after macOS Dark Mode
+             */
+            --bg-body: #000000;
+            --bg-surface-1: #121212;
+            --bg-surface-2: #1C1C1E;
+            --bg-surface-3: #2C2C2E;
+            --bg-overlay: rgba(0, 0, 0, 0.6);
+            
+            --text-primary: #F5F5F7;
+            --text-secondary: #86868B;
+            --text-tertiary: #6E6E73;
+            --text-inverse: #000000;
+            
+            --border-light: rgba(255, 255, 255, 0.12);
+            --border-hover: rgba(255, 255, 255, 0.24);
+            
+            --accent-blue: #2997FF;
+            --accent-purple: #BF5AF2;
+            --accent-glow: rgba(41, 151, 255, 0.4);
+            
+            --glass-bg: rgba(25, 25, 25, 0.72);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
+            --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 24px 60px rgba(0, 0, 0, 0.5);
+            
+            --particle-color: rgba(255, 255, 255, 0.15);
+        }
+
+        /* * THEME: LIGHT 
+         * Modeled after macOS Light Mode
+         */
+        [data-theme="light"] {
+            --bg-body: #F5F5F7;
+            --bg-surface-1: #FFFFFF;
+            --bg-surface-2: #F2F2F7;
+            --bg-surface-3: #E5E5EA;
+            --bg-overlay: rgba(255, 255, 255, 0.6);
+            
+            --text-primary: #1D1D1F;
+            --text-secondary: #515154;
+            --text-tertiary: #86868B;
+            --text-inverse: #FFFFFF;
+            
+            --border-light: rgba(0, 0, 0, 0.08);
+            --border-hover: rgba(0, 0, 0, 0.16);
+            
+            --accent-blue: #0071E3;
+            --accent-purple: #AF52DE;
+            --accent-glow: rgba(0, 113, 227, 0.2);
+            
+            --glass-bg: rgba(255, 255, 255, 0.72);
+            --glass-border: rgba(0, 0, 0, 0.05);
+            --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+            
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+            --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 24px 60px rgba(0, 0, 0, 0.12);
+            
+            --particle-color: rgba(0, 0, 0, 0.08);
+        }
+
+        /* ========================================================================
+        3.0 GLOBAL STYLES & TYPOGRAPHY
+        ========================================================================
+        */
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-family-base);
+            background-color: var(--bg-body);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            transition: background-color 0.4s var(--ease-out-expo), color 0.4s var(--ease-out-expo);
+        }
+
+        ::selection {
+            background: var(--accent-blue);
+            color: #FFFFFF;
+        }
+
+        /* ========================================================================
+        4.0 UTILITY CLASSES
         ========================================================================
         */
         .container {
@@ -171,125 +213,173 @@
             padding-left: var(--container-padding);
             padding-right: var(--container-padding);
         }
-
+        
+        /* Flexbox Utils */
         .flex { display: flex; }
         .flex-col { flex-direction: column; }
         .items-center { align-items: center; }
         .justify-center { justify-content: center; }
         .justify-between { justify-content: space-between; }
-        
-        .grid { display: grid; }
-        .grid-cols-1 { grid-template-columns: repeat(1, 1fr); }
-        .grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
-        .grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
+        .gap-16 { gap: 16px; }
         .gap-24 { gap: 24px; }
         .gap-32 { gap: 32px; }
+        
+        /* Grid Utils */
+        .grid { display: grid; }
+        .grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
+        .projects-grid { 
+            display: grid; 
+            grid-template-columns: repeat(12, 1fr); 
+            gap: 24px; 
+            margin-top: 48px; 
+        }
+        .grid-span-4 { grid-column: span 4; }
+        .grid-span-8 { grid-column: span 8; }
+        .grid-span-12 { grid-column: span 12; }
 
+        /* Typography Utils */
         .text-center { text-align: center; }
-        .text-right { text-align: right; }
+        .text-accent { color: var(--accent-blue); }
+        .text-secondary { color: var(--text-secondary); }
+        .font-bold { font-weight: 700; }
         
-        .uppercase { text-transform: uppercase; }
-        .tracking-wide { letter-spacing: 0.05em; }
-        
-        .font-mono { font-family: var(--font-family-mono); }
-        .text-accent { color: var(--color-accent-blue); }
-        .text-secondary { color: var(--color-text-secondary); }
-
-        .mt-20 { margin-top: 20px; }
+        /* Spacing Utils */
         .mb-20 { margin-bottom: 20px; }
+        .mt-20 { margin-top: 20px; }
         .py-120 { padding-top: 120px; padding-bottom: 120px; }
-
-        /* Visually Hidden (for Accessibility) */
+        
+        /* Accessibility */
         .sr-only {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            white-space: nowrap;
-            border: 0;
+            position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+            overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
         }
 
         /* ========================================================================
-        4.0 ANIMATIONS & KEYFRAMES
+        5.0 UI COMPONENTS
         ========================================================================
         */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+
+        /* 5.1 Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 28px;
+            border-radius: 999px;
+            font-size: 15px;
+            font-weight: 500;
+            transition: all 0.3s var(--ease-out-expo);
+            letter-spacing: -0.01em;
+            position: relative;
+            overflow: hidden;
         }
 
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+        .btn-primary {
+            background-color: var(--text-primary);
+            color: var(--bg-body);
         }
 
-        @keyframes pulse-ring {
-            0% { transform: scale(0.33); }
-            80%, 100% { opacity: 0; }
-        }
-
-        @keyframes pulse-dot {
-            0% { transform: scale(0.8); }
-            50% { transform: scale(1); }
-            100% { transform: scale(0.8); }
-        }
-
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        }
-
-        /* Reveal Class for Scroll Animations */
-        .reveal {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: all 1s var(--ease-out-expo);
+        .btn-primary:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
         }
         
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
+        /* Inverted hover for light mode */
+        [data-theme="light"] .btn-primary:hover {
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border-light);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--bg-surface-2);
+            border-color: var(--text-primary);
+        }
+
+        /* 5.2 Bento Cards */
+        .bento-card {
+            background: var(--bg-surface-2);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--border-light);
+            transition: transform 0.4s var(--ease-out-expo), border-color 0.4s ease, box-shadow 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
+
+        .bento-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-blue);
+            box-shadow: var(--shadow-md);
+        }
+
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--bg-surface-3);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: var(--accent-blue);
+            margin-bottom: 24px;
+        }
+
+        .card-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-secondary);
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .card-title {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .card-desc {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        
+        .project-img-wrapper {
+            width: 100%;
+            height: 250px;
+            background: var(--bg-surface-1);
+            border-radius: var(--radius-md);
+            margin-bottom: 20px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .project-placeholder {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #fff;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
         }
 
         /* ========================================================================
-        5.0 COMPONENT STYLES
+        6.0 NAVIGATION & HEADER
         ========================================================================
         */
-
-        /* 5.1 Custom Cursor */
-        .cursor-dot,
-        .cursor-outline {
-            position: fixed;
-            top: 0;
-            left: 0;
-            transform: translate(-50%, -50%);
-            border-radius: 50%;
-            z-index: 9999;
-            pointer-events: none;
-        }
-
-        .cursor-dot {
-            width: 8px;
-            height: 8px;
-            background-color: var(--color-text-primary);
-        }
-
-        .cursor-outline {
-            width: 40px;
-            height: 40px;
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            transition: width 0.2s, height 0.2s, background-color 0.2s;
-        }
-
-        body:hover .cursor-outline {
-            opacity: 1;
-        }
-
-        /* 5.2 Navigation (Apple Style Sticky) */
         .header-nav {
             position: fixed;
             top: 0;
@@ -297,58 +387,66 @@
             width: 100%;
             height: var(--header-height);
             z-index: 1000;
-            background: rgba(0, 0, 0, 0.75);
+            background: var(--glass-bg);
             backdrop-filter: saturate(180%) blur(20px);
             -webkit-backdrop-filter: saturate(180%) blur(20px);
-            border-bottom: 1px solid rgba(255,255,255,0.08);
-            transition: transform 0.3s ease;
+            border-bottom: 1px solid var(--glass-border);
+            transition: all 0.3s ease;
         }
 
         .nav-container {
-            max-width: var(--container-width);
-            margin: 0 auto;
             height: 100%;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 var(--container-padding);
         }
 
         .logo {
             font-size: 18px;
             font-weight: 600;
-            color: var(--color-text-primary);
+            color: var(--text-primary);
             letter-spacing: -0.02em;
-            position: relative;
-            z-index: 1002;
         }
 
         .desktop-menu {
             display: flex;
-            gap: 32px;
+            align-items: center;
+            gap: 24px;
         }
 
         .menu-link {
-            font-size: 12px;
-            color: #D1D1D6;
-            opacity: 0.8;
-            transition: opacity 0.2s ease, color 0.2s ease;
+            font-size: 13px;
+            color: var(--text-secondary);
+            transition: color 0.2s ease;
+            font-weight: 500;
         }
 
-        .menu-link:hover {
-            opacity: 1;
-            color: #FFFFFF;
+        .menu-link:hover, .menu-link.active {
+            color: var(--text-primary);
         }
 
-        .menu-link.active {
-            color: #FFFFFF;
-            opacity: 1;
+        /* Navigation Icons (Search / Theme) */
+        .nav-icon-btn {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            color: var(--text-primary);
+            font-size: 14px;
+            transition: background-color 0.2s;
+        }
+
+        .nav-icon-btn:hover {
+            background-color: var(--bg-surface-3);
         }
         
-        .external-link-icon {
-            font-size: 10px;
-            margin-left: 4px;
-            opacity: 0.7;
+        .vertical-divider {
+            width: 1px;
+            height: 16px;
+            background-color: var(--border-light);
+            margin: 0 4px;
         }
 
         /* Mobile Hamburger */
@@ -363,19 +461,19 @@
         .bar {
             width: 20px;
             height: 2px;
-            background-color: #FFF;
+            background-color: var(--text-primary);
             border-radius: 4px;
             transition: all 0.3s var(--ease-out-expo);
         }
 
-        /* Mobile Menu Overlay */
+        /* Mobile Overlay */
         .mobile-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100vh;
-            background-color: #000000;
+            background-color: var(--bg-body);
             z-index: 1001;
             padding: 80px 24px;
             transform: translateY(-100%);
@@ -390,156 +488,163 @@
         }
 
         .mobile-link {
-            font-size: 32px;
+            font-size: 28px;
             font-weight: 700;
-            color: var(--color-text-primary);
-            opacity: 0;
-            transform: translateY(20px);
-            transition: 0.4s var(--ease-out-expo);
+            color: var(--text-primary);
+            text-align: left;
+            width: 100%;
         }
-
-        .mobile-overlay.is-active .mobile-link {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* --- ADDED: Apple-style Close Button --- */
+        
         .mobile-close-btn {
             position: absolute;
-            top: 28px; /* Aligns with header height */
-            right: 24px; /* Aligns with container padding */
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.15);
-            color: #FFFFFF;
-            font-size: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            cursor: pointer;
-            z-index: 1005;
-            transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.2s;
-        }
-
-        .mobile-close-btn:active {
-            transform: scale(0.9);
-            background: rgba(255, 255, 255, 0.25);
-        }
-
-        /* 5.3 Buttons */
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 12px 26px;
-            border-radius: 999px;
-            font-size: 14px;
-            font-weight: 500;
-            transition: all 0.3s var(--ease-out-expo);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn-primary {
-            background-color: var(--color-text-primary);
-            color: #000000;
-        }
-
-        .btn-primary:hover {
-            background-color: #FFFFFF;
-            transform: scale(1.03);
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
-        }
-
-        .btn-outline {
-            background-color: rgba(255, 255, 255, 0.1);
-            color: var(--color-text-primary);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .btn-outline:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-            border-color: rgba(255,255,255,0.3);
-        }
-
-        /* 5.4 Cards (Bento Style) */
-        .bento-card {
-            background: var(--color-bg-tertiary);
-            border-radius: var(--radius-lg);
-            padding: 32px;
-            position: relative;
-            overflow: hidden;
-            border: 1px solid var(--color-border);
-            transition: transform 0.4s var(--ease-out-expo), border-color 0.4s ease;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            height: 100%;
-        }
-
-        .bento-card:hover {
-            transform: translateY(-4px);
-            border-color: var(--color-border-hover);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-        }
-
-        .card-icon {
-            width: 48px;
-            height: 48px;
-            background: rgba(255,255,255,0.05);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            color: var(--color-accent-blue);
-            margin-bottom: 24px;
-        }
-
-        .card-label {
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--color-text-secondary);
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-
-        .card-title {
-            font-size: 22px;
-            font-weight: 600;
-            margin-bottom: 12px;
-            line-height: 1.3;
-        }
-
-        .card-desc {
-            font-size: 15px;
-            color: var(--color-text-secondary);
-            line-height: 1.6;
+            top: 24px;
+            right: 24px;
+            font-size: 24px;
+            color: var(--text-primary);
         }
 
         /* ========================================================================
-        6.0 PAGE SECTIONS
+        7.0 SEARCH OVERLAY (APPLE SPOTLIGHT STYLE)
         ========================================================================
         */
-
-        /* 6.1 Background Canvas */
-        #bg-canvas {
+        .search-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -1;
-            opacity: 0.4;
+            z-index: 2000;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(4px);
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding-top: 15vh;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease;
         }
 
-        /* 6.2 Hero Section */
+        .search-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .search-modal {
+            width: 100%;
+            max-width: 600px;
+            background: var(--bg-surface-2);
+            border-radius: 16px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--border-light);
+            transform: scale(0.98);
+            transition: transform 0.2s var(--ease-out-expo);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .search-overlay.active .search-modal {
+            transform: scale(1);
+        }
+
+        .search-header {
+            display: flex;
+            align-items: center;
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .search-icon-lg {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-right: 16px;
+        }
+
+        .search-input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            font-size: 18px;
+            color: var(--text-primary);
+            font-family: var(--font-family-base);
+        }
+
+        .search-input::placeholder {
+            color: var(--text-secondary);
+        }
+
+        .kbd-shortcut {
+            font-size: 11px;
+            color: var(--text-tertiary);
+            border: 1px solid var(--border-light);
+            border-radius: 4px;
+            padding: 2px 6px;
+            background: var(--bg-surface-1);
+        }
+
+        .search-results-container {
+            max-height: 320px;
+            overflow-y: auto;
+            padding: 8px;
+        }
+
+        .search-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.15s;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .search-item:hover, .search-item.selected {
+            background-color: var(--accent-blue);
+            color: #FFFFFF;
+        }
+        
+        .search-item:hover .search-item-desc, 
+        .search-item.selected .search-item-desc {
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .search-item-icon {
+            width: 24px;
+            text-align: center;
+            margin-right: 12px;
+            font-size: 14px;
+        }
+
+        .search-item-content {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .search-item-title {
+            font-weight: 500;
+            font-size: 14px;
+        }
+        
+        .search-item-desc {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+        
+        .no-results {
+            padding: 24px;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        /* ========================================================================
+        8.0 PAGE SECTIONS
+        ========================================================================
+        */
+        
+        /* 8.1 Hero */
         .hero-section {
             min-height: 100vh;
             display: flex;
@@ -548,304 +653,170 @@
             padding-top: var(--header-height);
             position: relative;
         }
-
+        
+        /* Ensure content is strictly centered */
         .hero-content {
             text-align: center;
             z-index: 2;
             max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
+        .hero-title {
+            font-size: clamp(48px, 8vw, 84px);
+            line-height: 1.05;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            margin-bottom: 24px;
+            /* Gradient Text */
+            background: linear-gradient(135deg, var(--text-primary) 30%, var(--text-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(18px, 4vw, 22px);
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+            text-align: center;
+        }
+        
         .hero-badge {
             display: inline-block;
             padding: 6px 12px;
             border-radius: 20px;
             background: rgba(41, 151, 255, 0.1);
-            color: var(--color-accent-blue);
+            color: var(--accent-blue);
             font-size: 13px;
-            font-weight: 500;
+            font-weight: 600;
             margin-bottom: 24px;
             border: 1px solid rgba(41, 151, 255, 0.2);
-            animation: fadeIn 1s ease-out;
         }
 
-        .hero-title {
-            font-size: clamp(40px, 8vw, 84px);
-            line-height: 1.05;
-            font-weight: 700;
-            letter-spacing: -0.03em;
-            margin-bottom: 24px;
-            background: linear-gradient(135deg, #FFFFFF 0%, #86868B 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .typewriter-cursor {
-            display: inline-block;
-            width: 4px;
-            height: 1em;
-            background-color: var(--color-accent-blue);
-            margin-left: 8px;
-            vertical-align: text-bottom;
-            animation: blink 1s step-end infinite;
-        }
-
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
-
-        .hero-subtitle {
-            font-size: clamp(18px, 4vw, 22px);
-            color: var(--color-text-secondary);
-            max-width: 600px;
-            margin: 0 auto 40px;
-            line-height: 1.6;
-            animation: fadeUp 1s 0.2s backwards;
-        }
-
-        .hero-actions {
-            display: flex;
-            gap: 16px;
-            justify-content: center;
-            animation: fadeUp 1s 0.4s backwards;
-        }
-
-        /* 6.3 About/Profile Section */
+        /* 8.2 Profile */
         .profile-section {
-            background-color: var(--color-bg-secondary);
+            background-color: var(--bg-surface-1);
         }
-
+        
         .profile-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 64px;
             align-items: center;
         }
-
-        .profile-image-container {
-            position: relative;
-            border-radius: var(--radius-xl);
-            overflow: hidden;
-            aspect-ratio: 4/5;
-            background: linear-gradient(45deg, #1A1A1A, #252525);
-            border: 1px solid rgba(255,255,255,0.05);
-        }
         
-        /* Simulated Image Placeholder if no real image */
-        .profile-placeholder {
+        .profile-image-container {
             width: 100%;
-            height: 100%;
+            aspect-ratio: 4/5;
+            background: linear-gradient(45deg, #111, #222);
+            border-radius: var(--radius-xl);
+            position: relative;
+            border: 1px solid var(--border-light);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #333;
+        }
+        
+        .profile-icon {
             font-size: 64px;
+            color: var(--text-secondary);
         }
 
-        .profile-details h2 {
-            font-size: 40px;
-            margin-bottom: 32px;
-            font-weight: 700;
-        }
-
-        .education-timeline {
-            position: relative;
-            padding-left: 24px;
-            border-left: 2px solid rgba(255,255,255,0.1);
-        }
-
-        .timeline-item {
-            position: relative;
-            margin-bottom: 32px;
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -31px;
-            top: 4px;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: var(--color-accent-blue);
-            border: 2px solid var(--color-bg-primary);
-        }
-
-        .timeline-degree {
-            font-size: 18px;
-            font-weight: 600;
-            color: var(--color-text-primary);
-            margin-bottom: 4px;
-        }
-
-        .timeline-inst {
-            font-size: 14px;
-            color: var(--color-text-secondary);
-        }
-
-        /* 6.4 Projects Section (Bento Grid) */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(12, 1fr);
-            gap: 24px;
-            margin-top: 48px;
-        }
-
-        .grid-span-4 { grid-column: span 4; }
-        .grid-span-6 { grid-column: span 6; }
-        .grid-span-8 { grid-column: span 8; }
-        .grid-span-12 { grid-column: span 12; }
-
-        .project-img-wrapper {
-            width: 100%;
-            height: 200px;
-            background: #111;
-            margin-bottom: 24px;
-            border-radius: var(--radius-md);
-            overflow: hidden;
-            position: relative;
-        }
-
-        .project-img-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s ease;
-        }
-
-        .bento-card:hover .project-img-wrapper img {
-            transform: scale(1.05);
-        }
-
-        /* 6.5 Contact / CTA Section */
+        /* 8.3 Contact/CTA */
         .cta-container {
-            background: linear-gradient(180deg, rgba(29,29,31,0.5) 0%, rgba(0,0,0,1) 100%);
+            background: linear-gradient(180deg, var(--bg-surface-2) 0%, var(--bg-body) 100%);
             border-radius: var(--radius-xl);
             padding: 80px 40px;
             text-align: center;
-            border: 1px solid var(--color-border);
+            border: 1px solid var(--border-light);
             position: relative;
             overflow: hidden;
         }
-
-        .cta-bg-glow {
+        
+        .cta-glow {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             width: 300px;
             height: 300px;
-            background: var(--color-accent-blue);
+            background: var(--accent-blue);
             filter: blur(120px);
             opacity: 0.15;
-            z-index: 0;
             pointer-events: none;
         }
 
-        .cta-content {
-            position: relative;
-            z-index: 1;
-        }
-
-        .contact-methods {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin: 40px 0;
-            flex-wrap: wrap;
-        }
-
-        .contact-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .contact-icon-circle {
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.08);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            color: var(--color-text-primary);
-            transition: all 0.3s ease;
-        }
-
-        .contact-item:hover .contact-icon-circle {
-            background: var(--color-accent-blue);
-            transform: translateY(-5px);
-        }
-
-        .contact-label {
-            font-size: 14px;
-            color: var(--color-text-secondary);
-        }
-
-        /* 6.6 Footer */
+        /* 8.4 Footer */
         .footer {
-            border-top: 1px solid var(--color-border);
-            padding: 40px 0;
-            color: var(--color-text-tertiary);
+            border-top: 1px solid var(--border-light);
+            padding: 48px 0;
+            background-color: var(--bg-surface-1);
+            color: var(--text-tertiary);
             font-size: 13px;
-            background-color: var(--color-bg-secondary);
-        }
-
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
         }
 
         /* ========================================================================
-        7.0 MEDIA QUERIES (RESPONSIVE DESIGN)
+        9.0 ANIMATIONS
+        ========================================================================
+        */
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s var(--ease-out-expo);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ========================================================================
+        10.0 BACKGROUND CANVAS
+        ========================================================================
+        */
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* ========================================================================
+        11.0 RESPONSIVE MEDIA QUERIES
         ========================================================================
         */
         @media (max-width: 1024px) {
-            :root {
-                --text-display: 60px;
-                --text-5xl: 40px;
-            }
-            .projects-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .grid-span-4, .grid-span-6, .grid-span-8 {
-                grid-column: span 2; /* Half width on tablet */
-            }
+            .projects-grid { grid-template-columns: repeat(2, 1fr); }
+            .grid-span-4, .grid-span-6, .grid-span-8 { grid-column: span 2; }
         }
 
         @media (max-width: 768px) {
             .desktop-menu { display: none; }
             .mobile-toggle { display: flex; }
             
-            .profile-grid {
-                grid-template-columns: 1fr;
-            }
+            .grid-cols-3, .profile-grid, .projects-grid { grid-template-columns: 1fr; }
+            .grid-span-4, .grid-span-6, .grid-span-8, .grid-span-12 { grid-column: span 1; }
             
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
+            .container { padding: 0 20px; }
+            .py-120 { padding-top: 80px; padding-bottom: 80px; }
             
-            .grid-span-4, .grid-span-6, .grid-span-8, .grid-span-12 {
-                grid-column: span 1; /* Full width on mobile */
-            }
-
-            .hero-title {
-                font-size: 48px;
-            }
-
-            .contact-methods {
-                flex-direction: column;
-                gap: 24px;
-            }
-
-            .footer-content {
-                flex-direction: column;
-                gap: 16px;
-            }
+            .hero-title { font-size: 42px; }
+            
+            .search-modal { height: 100%; max-width: 100%; border-radius: 0; }
+            .search-overlay { padding-top: 0; }
         }
     </style>
 </head>
@@ -853,11 +824,8 @@
 
     <canvas id="bg-canvas"></canvas>
 
-    <div class="cursor-dot"></div>
-    <div class="cursor-outline"></div>
-
     <header class="header-nav">
-        <div class="nav-container">
+        <div class="container nav-container">
             <a href="index.html" class="logo">SC.</a>
 
             <nav class="desktop-menu">
@@ -866,29 +834,50 @@
                 <a href="work.html" class="menu-link">Projects</a>
                 <a href="contact.html" class="menu-link">Contact</a>
                 <a href="https://shmusic.com" target="_blank" class="menu-link text-accent">
-                    shmusic.com <i class="fa-solid fa-arrow-up-right-from-square external-link-icon"></i>
+                    shmusic.com <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 10px; margin-left:4px;"></i>
                 </a>
+
+                <div class="vertical-divider"></div>
+
+                <button class="nav-icon-btn" id="theme-toggle" aria-label="Toggle Theme">
+                    <i class="fa-solid fa-sun" id="theme-icon"></i>
+                </button>
+
+                <button class="nav-icon-btn" id="search-trigger" aria-label="Search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
             </nav>
 
-            <div class="mobile-toggle" onclick="toggleMobileMenu()">
-                <div class="bar bar-1"></div>
-                <div class="bar bar-2"></div>
-                <div class="bar bar-3"></div>
+            <div class="mobile-toggle" id="mobile-toggle-btn">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
             </div>
         </div>
     </header>
 
     <div class="mobile-overlay" id="mobileOverlay">
-        <button class="mobile-close-btn" onclick="toggleMobileMenu()">
+        <button class="mobile-close-btn" id="mobile-close-btn">
             <i class="fa-solid fa-xmark"></i>
         </button>
         <a href="index.html" class="mobile-link">Home</a>
         <a href="about.html" class="mobile-link">About Me</a>
         <a href="work.html" class="mobile-link">Projects</a>
-        <a href="contact.html" class="mobile-link">Contact</a>
-        <a href="https://shmusic.com" target="_blank" class="mobile-link text-accent">
-            Music <i class="fa-solid fa-arrow-up-right-from-square"></i>
-        </a>
+        <button class="mobile-link" id="mobile-search-btn">Search</button>
+        <button class="mobile-link" id="mobile-theme-btn">Switch Theme</button>
+    </div>
+
+    <div class="search-overlay" id="searchOverlay">
+        <div class="search-modal">
+            <div class="search-header">
+                <i class="fa-solid fa-magnifying-glass search-icon-lg"></i>
+                <input type="text" class="search-input" id="searchInput" placeholder="Search projects, skills, pages..." autocomplete="off">
+                <div class="kbd-shortcut">ESC</div>
+            </div>
+            <div class="search-results-container" id="searchResults">
+                <div class="no-results">Type to search for anything...</div>
+            </div>
+        </div>
     </div>
 
     <main>
@@ -897,7 +886,7 @@
                 <div class="hero-badge">Available for Hire</div>
                 
                 <h1 class="hero-title">
-                    <span id="typewriter"></span><span class="typewriter-cursor"></span>
+                    <span id="typewriter"></span><span style="border-right: 3px solid var(--accent-blue); animation: blink 1s infinite;">&nbsp;</span>
                 </h1>
                 
                 <p class="hero-subtitle">
@@ -919,27 +908,27 @@
             <div class="container">
                 <div class="profile-grid">
                     <div class="profile-image-container reveal">
-                        <div class="profile-placeholder">
-                            <i class="fa-regular fa-user"></i>
-                        </div>
+                        <i class="fa-regular fa-user profile-icon"></i>
                     </div>
 
-                    <div class="profile-details reveal">
+                    <div class="reveal">
                         <div class="card-label text-accent">About Shakespeare Chabungbam</div>
-                        <h2>Engineering Digital <br>Excellence</h2>
+                        <h2 style="font-size: 40px; font-weight: 700; margin-bottom: 24px; color: var(--text-primary);">Engineering Digital <br>Excellence</h2>
                         
                         <p class="text-secondary mb-20" style="line-height: 1.7;">
                             I am a passionate technologist based in Imphal, Manipur. Currently pursuing my Master of Computer Applications (MCA) at Manipur University, I bridge the gap between aesthetic design and functional engineering. With a background in BCA from NIELIT Imphal, I specialize in full-stack development and brand identity.
                         </p>
 
-                        <div class="education-timeline mt-20">
-                            <div class="timeline-item">
-                                <div class="timeline-degree">Master of Computer Applications (MCA)</div>
-                                <div class="timeline-inst">Manipur University • Pursuing</div>
+                        <div style="border-left: 2px solid var(--border-light); padding-left: 24px; margin-top: 32px;">
+                            <div class="mb-20" style="position: relative;">
+                                <div style="position: absolute; left: -31px; top: 6px; width: 12px; height: 12px; border-radius: 50%; background: var(--accent-blue); border: 2px solid var(--bg-surface-1);"></div>
+                                <div style="font-size: 18px; font-weight: 600; color: var(--text-primary);">Master of Computer Applications (MCA)</div>
+                                <div style="font-size: 14px; color: var(--text-secondary);">Manipur University • Pursuing</div>
                             </div>
-                            <div class="timeline-item">
-                                <div class="timeline-degree">Bachelor of Computer Applications (BCA)</div>
-                                <div class="timeline-inst">NIELIT Imphal • Completed</div>
+                            <div style="position: relative;">
+                                <div style="position: absolute; left: -31px; top: 6px; width: 12px; height: 12px; border-radius: 50%; background: var(--text-tertiary); border: 2px solid var(--bg-surface-1);"></div>
+                                <div style="font-size: 18px; font-weight: 600; color: var(--text-primary);">Bachelor of Computer Applications (BCA)</div>
+                                <div style="font-size: 14px; color: var(--text-secondary);">NIELIT Imphal • Completed</div>
                             </div>
                         </div>
 
@@ -953,7 +942,7 @@
             <div class="container">
                 <div class="text-center mb-20">
                     <span class="card-label text-accent">Competencies</span>
-                    <h2 style="font-size: 36px; font-weight: 700;">My Skillset</h2>
+                    <h2 style="font-size: 36px; font-weight: 700; color: var(--text-primary);">My Skillset</h2>
                 </div>
 
                 <div class="grid grid-cols-3 gap-24 mt-20">
@@ -978,29 +967,29 @@
             </div>
         </section>
 
-        <section class="py-120" style="background-color: #080808;">
+        <section class="py-120" style="background-color: var(--bg-surface-1);">
             <div class="container">
                 <div class="flex justify-between items-center mb-20">
                     <div>
                         <span class="card-label text-accent">Portfolio</span>
-                        <h2 style="font-size: 36px; font-weight: 700;">Selected Works</h2>
+                        <h2 style="font-size: 36px; font-weight: 700; color: var(--text-primary);">Selected Works</h2>
                     </div>
                     <a href="work.html" class="btn btn-outline">All Projects</a>
                 </div>
 
                 <div class="projects-grid">
                     <div class="bento-card grid-span-8 reveal">
-                        <div class="project-img-wrapper" style="height: 300px;">
-                            <div style="width:100%; height:100%; background: linear-gradient(120deg, #2b0a3d, #561678); display:flex; align-items:center; justify-content:center; color:white; font-size: 32px; font-weight:bold;">MANFETE 2025</div>
+                        <div class="project-img-wrapper" style="background: linear-gradient(120deg, #2b0a3d, #561678);">
+                            <span class="project-placeholder">MANFETE 2025</span>
                         </div>
                         <div class="card-label">Graphic Design</div>
                         <h3 class="card-title">MANFETE 2025 Visual Identity</h3>
-                        <p class="card-desc">Official poster series including Manhunt, Queen, and Esports categories. Focused on vibrant typography and energetic composition.</p>
+                        <p class="card-desc">Official poster series including Manhunt, Queen, and Esports categories. Focused on vibrant typography.</p>
                     </div>
 
                     <div class="bento-card grid-span-4 reveal">
-                        <div class="project-img-wrapper" style="height: 300px;">
-                            <div style="width:100%; height:100%; background: linear-gradient(120deg, #E1306C, #F77737); display:flex; align-items:center; justify-content:center; color:white; font-size: 64px;"><i class="fa-brands fa-instagram"></i></div>
+                        <div class="project-img-wrapper" style="background: linear-gradient(120deg, #E1306C, #F77737);">
+                            <i class="fa-brands fa-instagram" style="font-size: 64px; color: white;"></i>
                         </div>
                         <div class="card-label">Social Media Growth</div>
                         <h3 class="card-title">Artory Channel</h3>
@@ -1008,11 +997,11 @@
                     </div>
 
                     <div class="bento-card grid-span-12 reveal">
-                        <div class="flex items-center justify-between">
+                        <div class="flex items-center justify-between" style="flex-wrap: wrap; gap: 20px;">
                             <div>
                                 <div class="card-label text-accent">Web Development</div>
                                 <h3 class="card-title">shmusic.com</h3>
-                                <p class="card-desc" style="max-width: 600px;">A dedicated music platform project designed for seamless audio streaming and artist discovery. Features a custom audio player and responsive layout.</p>
+                                <p class="card-desc" style="max-width: 600px;">A dedicated music platform project designed for seamless audio streaming and artist discovery. Features a custom audio player.</p>
                             </div>
                             <a href="https://shmusic.com" target="_blank" class="btn btn-primary">Visit Website</a>
                         </div>
@@ -1024,27 +1013,27 @@
         <section class="py-120">
             <div class="container">
                 <div class="cta-container reveal">
-                    <div class="cta-bg-glow"></div>
-                    <div class="cta-content">
-                        <h2 style="font-size: 48px; font-weight: 700; margin-bottom: 16px;">Ready to create something?</h2>
+                    <div class="cta-glow"></div>
+                    <div style="position: relative; z-index: 1;">
+                        <h2 style="font-size: 48px; font-weight: 700; margin-bottom: 16px; color: var(--text-primary);">Ready to create something?</h2>
                         <p class="text-secondary" style="font-size: 18px; margin-bottom: 40px;">Whether it's a branding overhaul, a new website, or a mobile app, I'm ready to help.</p>
                         
                         <div class="contact-methods">
-                            <a href="mailto:shakespearechabungbam12@gmail.com" class="contact-item">
-                                <div class="contact-icon-circle"><i class="fa-solid fa-envelope"></i></div>
-                                <span class="contact-label">shakespearechabungbam12@gmail.com</span>
+                            <a href="mailto:shakespearechabungbam12@gmail.com" class="flex flex-col items-center gap-16" style="color: var(--text-primary);">
+                                <div style="width: 56px; height: 56px; border-radius: 50%; background: var(--bg-surface-3); display: flex; align-items: center; justify-content: center; font-size: 20px;"><i class="fa-solid fa-envelope"></i></div>
+                                <span style="font-size: 14px; color: var(--text-secondary);">Email Me</span>
                             </a>
-                            <a href="tel:+918837067635" class="contact-item">
-                                <div class="contact-icon-circle"><i class="fa-solid fa-phone"></i></div>
-                                <span class="contact-label">+91 88370 67635</span>
+                            <a href="tel:+918837067635" class="flex flex-col items-center gap-16" style="color: var(--text-primary);">
+                                <div style="width: 56px; height: 56px; border-radius: 50%; background: var(--bg-surface-3); display: flex; align-items: center; justify-content: center; font-size: 20px;"><i class="fa-solid fa-phone"></i></div>
+                                <span style="font-size: 14px; color: var(--text-secondary);">Call Now</span>
                             </a>
-                            <a href="https://wa.me/918837067635" class="contact-item">
-                                <div class="contact-icon-circle"><i class="fa-brands fa-whatsapp"></i></div>
-                                <span class="contact-label">WhatsApp Chat</span>
+                            <a href="https://wa.me/918837067635" class="flex flex-col items-center gap-16" style="color: var(--text-primary);">
+                                <div style="width: 56px; height: 56px; border-radius: 50%; background: var(--bg-surface-3); display: flex; align-items: center; justify-content: center; font-size: 20px;"><i class="fa-brands fa-whatsapp"></i></div>
+                                <span style="font-size: 14px; color: var(--text-secondary);">WhatsApp</span>
                             </a>
                         </div>
 
-                        <a href="contact.html" class="btn btn-primary" style="padding: 16px 40px; font-size: 16px;">Let's Talk</a>
+                        <a href="contact.html" class="btn btn-primary" style="margin-top: 40px; padding: 16px 40px;">Let's Talk</a>
                     </div>
                 </div>
             </div>
@@ -1053,18 +1042,18 @@
 
     <footer class="footer">
         <div class="container">
-            <div class="footer-content">
+            <div class="flex justify-between items-center" style="flex-wrap: wrap; gap: 24px;">
                 <div>
-                    <span style="font-weight: 600; color: white;">Shakespeare Chabungbam</span>
+                    <span style="font-weight: 600; color: var(--text-primary);">Shakespeare Chabungbam</span>
                     <br>Imphal, Manipur, India
                 </div>
                 <div>
                     &copy; 2025. All Rights Reserved.
                 </div>
                 <div class="flex gap-24">
-                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
-                    <a href="#"><i class="fa-brands fa-github"></i></a>
+                    <a href="#" style="font-size: 20px;"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" style="font-size: 20px;"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="#" style="font-size: 20px;"><i class="fa-brands fa-github"></i></a>
                 </div>
             </div>
         </div>
@@ -1073,217 +1062,272 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             
-            // 10.1 Mobile Menu Logic
-            const mobileToggle = document.querySelector('.mobile-toggle');
+            // -------------------------------------------------------------
+            // 1. GLOBAL VARIABLES & SELECTORS
+            // -------------------------------------------------------------
+            const html = document.documentElement;
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            const themeIcon = document.getElementById('theme-icon');
+            const mobileThemeBtn = document.getElementById('mobile-theme-btn');
+            
+            const searchOverlay = document.getElementById('searchOverlay');
+            const searchTrigger = document.getElementById('search-trigger');
+            const mobileSearchBtn = document.getElementById('mobile-search-btn');
+            const searchInput = document.getElementById('searchInput');
+            const searchResults = document.getElementById('searchResults');
+            
+            const mobileToggleBtn = document.getElementById('mobile-toggle-btn');
+            const mobileCloseBtn = document.getElementById('mobile-close-btn');
             const mobileOverlay = document.getElementById('mobileOverlay');
-            const bars = document.querySelectorAll('.bar');
-            let isMenuOpen = false;
 
-            window.toggleMobileMenu = () => {
-                isMenuOpen = !isMenuOpen;
-                mobileOverlay.classList.toggle('is-active');
+            // -------------------------------------------------------------
+            // 2. SEARCH DATABASE (Mock Data)
+            // -------------------------------------------------------------
+            const searchData = [
+                // Pages
+                { type: 'Page', title: 'Home', desc: 'Main landing page', link: 'index.html', icon: 'fa-home' },
+                { type: 'Page', title: 'About Me', desc: 'Background & education', link: 'about.html', icon: 'fa-user' },
+                { type: 'Page', title: 'Projects', desc: 'Case studies & work', link: 'work.html', icon: 'fa-briefcase' },
+                { type: 'Page', title: 'Contact', desc: 'Get in touch', link: 'contact.html', icon: 'fa-envelope' },
                 
-                if(isMenuOpen) {
-                    document.body.style.overflow = 'hidden'; // Lock Scroll
-                    // Animate Hamburger (optional, since we now have a close button)
-                    // You can keep this for visual flair or remove it if you prefer just the X inside
-                    bars[0].style.transform = 'rotate(45deg) translate(5px, 6px)';
-                    bars[1].style.opacity = '0';
-                    bars[2].style.transform = 'rotate(-45deg) translate(5px, -6px)';
+                // Skills
+                { type: 'Skill', title: 'Graphic Design', desc: 'Adobe Ps, Ai, Id', link: 'work.html', icon: 'fa-pen-nib' },
+                { type: 'Skill', title: 'Web Development', desc: 'HTML, CSS, React', link: 'work.html', icon: 'fa-code' },
+                { type: 'Skill', title: 'App Development', desc: 'Flutter, React Native', link: 'work.html', icon: 'fa-mobile' },
+                
+                // Projects
+                { type: 'Project', title: 'MANFETE 2025', desc: 'Identity Design', link: '#', icon: 'fa-image' },
+                { type: 'Project', title: 'Artory Channel', desc: 'Social Media Growth', link: '#', icon: 'fa-instagram' },
+                { type: 'Project', title: 'shmusic.com', desc: 'Music Streaming Web App', link: 'https://shmusic.com', icon: 'fa-music' },
+                
+                // Misc
+                { type: 'Contact', title: 'Email', desc: 'shakespearechabungbam12@gmail.com', link: 'mailto:shakespearechabungbam12@gmail.com', icon: 'fa-at' },
+                { type: 'Contact', title: 'WhatsApp', desc: '+91 88370 67635', link: 'https://wa.me/918837067635', icon: 'fa-whatsapp' }
+            ];
+
+            // -------------------------------------------------------------
+            // 3. THEME MANAGEMENT SYSTEM
+            // -------------------------------------------------------------
+            function setTheme(theme) {
+                html.setAttribute('data-theme', theme);
+                localStorage.setItem('theme', theme);
+                
+                if (theme === 'light') {
+                    themeIcon.classList.replace('fa-sun', 'fa-moon');
                 } else {
-                    document.body.style.overflow = 'auto'; // Unlock Scroll
-                    bars[0].style.transform = 'none';
-                    bars[1].style.opacity = '1';
-                    bars[2].style.transform = 'none';
+                    themeIcon.classList.replace('fa-moon', 'fa-sun');
                 }
+                
+                // Re-initialize particles to update color
+                if(typeof initParticles === 'function') initParticles();
+            }
+
+            // Initialize Theme
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            setTheme(savedTheme);
+
+            // Toggle Events
+            const toggleThemeHandler = () => {
+                const current = html.getAttribute('data-theme');
+                const next = current === 'dark' ? 'light' : 'dark';
+                setTheme(next);
             };
 
-            // 10.2 Typewriter Effect
-            const textToType = ["Design.", "Code.", "Create."];
-            const typeContainer = document.getElementById('typewriter');
-            let arrayIndex = 0;
-            let charIndex = 0;
-            let isDeleting = false;
+            themeToggleBtn.addEventListener('click', toggleThemeHandler);
+            mobileThemeBtn.addEventListener('click', () => {
+                toggleThemeHandler();
+                closeMobileMenu();
+            });
+
+            // -------------------------------------------------------------
+            // 4. SEARCH FUNCTIONALITY (SPOTLIGHT)
+            // -------------------------------------------------------------
+            function openSearch() {
+                searchOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                setTimeout(() => searchInput.focus(), 100);
+            }
+
+            function closeSearch() {
+                searchOverlay.classList.remove('active');
+                document.body.style.overflow = 'auto';
+                searchInput.value = '';
+                renderResults([]);
+            }
+
+            function renderResults(results) {
+                if (results.length === 0 && searchInput.value.length === 0) {
+                    searchResults.innerHTML = '<div class="no-results">Type to search for pages, projects, or skills...</div>';
+                    return;
+                }
+                
+                if (results.length === 0) {
+                    searchResults.innerHTML = '<div class="no-results">No results found.</div>';
+                    return;
+                }
+
+                searchResults.innerHTML = results.map(item => `
+                    <a href="${item.link}" class="search-item" onclick="document.body.style.overflow='auto'">
+                        <div class="search-item-icon">
+                            <i class="fa-solid ${item.icon}"></i>
+                        </div>
+                        <div class="search-item-content">
+                            <div class="search-item-title">${item.title}</div>
+                            <div class="search-item-desc">${item.desc}</div>
+                        </div>
+                        <div style="margin-left: auto; font-size: 11px; color: var(--text-tertiary); border: 1px solid var(--border-light); padding: 2px 6px; border-radius: 4px;">
+                            ${item.type}
+                        </div>
+                    </a>
+                `).join('');
+            }
+
+            // Event Listeners
+            searchTrigger.addEventListener('click', openSearch);
+            mobileSearchBtn.addEventListener('click', () => {
+                closeMobileMenu();
+                openSearch();
+            });
+
+            // Close when clicking outside
+            searchOverlay.addEventListener('click', (e) => {
+                if(e.target === searchOverlay) closeSearch();
+            });
+
+            // Keyboard Shortcuts (Cmd+K / Ctrl+K / Esc)
+            document.addEventListener('keydown', (e) => {
+                if((e.metaKey || e.ctrlKey) && e.key === 'k') {
+                    e.preventDefault();
+                    if(searchOverlay.classList.contains('active')) closeSearch();
+                    else openSearch();
+                }
+                if(e.key === 'Escape') closeSearch();
+            });
+
+            // Input Logic
+            searchInput.addEventListener('input', (e) => {
+                const term = e.target.value.toLowerCase();
+                if(!term) {
+                    renderResults([]);
+                    return;
+                }
+                const filtered = searchData.filter(item => 
+                    item.title.toLowerCase().includes(term) || 
+                    item.desc.toLowerCase().includes(term)
+                );
+                renderResults(filtered);
+            });
+
+            // -------------------------------------------------------------
+            // 5. MOBILE MENU LOGIC
+            // -------------------------------------------------------------
+            function openMobileMenu() {
+                mobileOverlay.classList.add('is-active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeMobileMenu() {
+                mobileOverlay.classList.remove('is-active');
+                document.body.style.overflow = 'auto';
+            }
+
+            mobileToggleBtn.addEventListener('click', openMobileMenu);
+            mobileCloseBtn.addEventListener('click', closeMobileMenu);
+
+            // -------------------------------------------------------------
+            // 6. TYPEWRITER EFFECT
+            // -------------------------------------------------------------
+            const typeText = ["Design.", "Code.", "Create."];
+            const typeEl = document.getElementById('typewriter');
+            let typeIdx = 0, charIdx = 0, isDeleting = false;
 
             function typeWriter() {
-                const currentWord = textToType[arrayIndex];
-                
+                const current = typeText[typeIdx];
                 if (isDeleting) {
-                    typeContainer.innerText = currentWord.substring(0, charIndex - 1);
-                    charIndex--;
+                    typeEl.innerText = current.substring(0, charIdx - 1);
+                    charIdx--;
                 } else {
-                    typeContainer.innerText = currentWord.substring(0, charIndex + 1);
-                    charIndex++;
+                    typeEl.innerText = current.substring(0, charIdx + 1);
+                    charIdx++;
                 }
 
-                let typeSpeed = isDeleting ? 50 : 100;
+                let speed = isDeleting ? 50 : 100;
 
-                if (!isDeleting && charIndex === currentWord.length) {
-                    typeSpeed = 2000; // Pause at end of word
+                if (!isDeleting && charIdx === current.length) {
+                    speed = 2000;
                     isDeleting = true;
-                } else if (isDeleting && charIndex === 0) {
+                } else if (isDeleting && charIdx === 0) {
                     isDeleting = false;
-                    arrayIndex = (arrayIndex + 1) % textToType.length;
-                    typeSpeed = 500; // Pause before new word
+                    typeIdx = (typeIdx + 1) % typeText.length;
+                    speed = 500;
                 }
-
-                setTimeout(typeWriter, typeSpeed);
+                setTimeout(typeWriter, speed);
             }
-            // Start Typing
             setTimeout(typeWriter, 1000);
 
-            // 10.3 Scroll Reveal Animation (Intersection Observer)
+            // -------------------------------------------------------------
+            // 7. SCROLL REVEAL ANIMATION
+            // -------------------------------------------------------------
             const revealElements = document.querySelectorAll('.reveal');
-            
             const revealObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('active');
                     }
                 });
-            }, {
-                threshold: 0.1,
-                rootMargin: "0px 0px -50px 0px"
-            });
+            }, { threshold: 0.1 });
 
             revealElements.forEach(el => revealObserver.observe(el));
 
-            // 10.4 Custom Cursor Logic (Desktop Only)
-            if (window.matchMedia("(pointer: fine)").matches) {
-                const cursorDot = document.querySelector('.cursor-dot');
-                const cursorOutline = document.querySelector('.cursor-outline');
-
-                window.addEventListener('mousemove', (e) => {
-                    const posX = e.clientX;
-                    const posY = e.clientY;
-
-                    cursorDot.style.left = `${posX}px`;
-                    cursorDot.style.top = `${posY}px`;
-
-                    // Slight delay for outline
-                    cursorOutline.animate({
-                        left: `${posX}px`,
-                        top: `${posY}px`
-                    }, { duration: 500, fill: "forwards" });
-                });
-
-                // Hover Effects
-                document.querySelectorAll('a, button, .bento-card').forEach(el => {
-                    el.addEventListener('mouseenter', () => {
-                        cursorOutline.style.transform = 'translate(-50%, -50%) scale(1.5)';
-                        cursorOutline.style.backgroundColor = 'rgba(255,255,255,0.1)';
-                    });
-                    el.addEventListener('mouseleave', () => {
-                        cursorOutline.style.transform = 'translate(-50%, -50%) scale(1)';
-                        cursorOutline.style.backgroundColor = 'transparent';
-                    });
-                });
-            }
-
-            // 10.5 Dynamic Background Canvas (Particle System)
+            // -------------------------------------------------------------
+            // 8. DYNAMIC PARTICLE BACKGROUND SYSTEM
+            // -------------------------------------------------------------
             const canvas = document.getElementById('bg-canvas');
             const ctx = canvas.getContext('2d');
             let particlesArray;
 
-            // Resize Canvas
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-
-            window.addEventListener('resize', () => {
+            window.initParticles = function() {
                 canvas.width = window.innerWidth;
                 canvas.height = window.innerHeight;
-                initParticles();
-            });
-
-            // Particle Class
-            class Particle {
-                constructor(x, y, directionX, directionY, size, color) {
-                    this.x = x;
-                    this.y = y;
-                    this.directionX = directionX;
-                    this.directionY = directionY;
-                    this.size = size;
-                    this.color = color;
-                }
-
-                draw() {
-                    ctx.beginPath();
-                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
-                    ctx.fillStyle = this.color;
-                    ctx.fill();
-                }
-
-                update() {
-                    // Boundary Checks
-                    if (this.x > canvas.width || this.x < 0) this.directionX = -this.directionX;
-                    if (this.y > canvas.height || this.y < 0) this.directionY = -this.directionY;
-
-                    // Move
-                    this.x += this.directionX;
-                    this.y += this.directionY;
-
-                    this.draw();
-                }
-            }
-
-            // Create Particle Cluster
-            function initParticles() {
                 particlesArray = [];
-                // Number of particles
-                const numberOfParticles = (canvas.height * canvas.width) / 15000;
+                
+                const style = getComputedStyle(document.body);
+                const color = style.getPropertyValue('--particle-color').trim();
+
+                const numberOfParticles = (canvas.height * canvas.width) / 12000;
                 
                 for (let i = 0; i < numberOfParticles; i++) {
                     const size = (Math.random() * 2) + 0.5;
                     const x = Math.random() * (innerWidth - size * 2) + size * 2;
                     const y = Math.random() * (innerHeight - size * 2) + size * 2;
-                    const directionX = (Math.random() * 0.4) - 0.2;
-                    const directionY = (Math.random() * 0.4) - 0.2;
-                    // Colors: Blue, Purple variants
-                    const colors = ['rgba(41, 151, 255, 0.3)', 'rgba(191, 90, 242, 0.3)', 'rgba(255,255,255,0.1)'];
-                    const color = colors[Math.floor(Math.random() * colors.length)];
-
-                    particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
+                    const dx = (Math.random() * 0.4) - 0.2;
+                    const dy = (Math.random() * 0.4) - 0.2;
+                    particlesArray.push({x, y, dx, dy, size, color});
                 }
             }
 
-            // Animation Loop
-            function animate() {
-                requestAnimationFrame(animate);
+            function animateParticles() {
+                requestAnimationFrame(animateParticles);
                 ctx.clearRect(0, 0, innerWidth, innerHeight);
-
-                for (let i = 0; i < particlesArray.length; i++) {
-                    particlesArray[i].update();
-                }
                 
-                // Connect particles
-                connect();
-            }
+                for (let i = 0; i < particlesArray.length; i++) {
+                    const p = particlesArray[i];
+                    p.x += p.dx;
+                    p.y += p.dy;
 
-            // Draw lines between particles
-            function connect() {
-                let opacityValue = 1;
-                for (let a = 0; a < particlesArray.length; a++) {
-                    for (let b = a; b < particlesArray.length; b++) {
-                        let distance = ((particlesArray[a].x - particlesArray[b].x) * (particlesArray[a].x - particlesArray[b].x)) + 
-                                       ((particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y));
-                        
-                        if (distance < (canvas.width / 7) * (canvas.height / 7)) {
-                            opacityValue = 1 - (distance / 20000);
-                            ctx.strokeStyle = 'rgba(255, 255, 255,' + (opacityValue * 0.05) + ')';
-                            ctx.lineWidth = 1;
-                            ctx.beginPath();
-                            ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
-                            ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
-                            ctx.stroke();
-                        }
-                    }
+                    if (p.x > canvas.width || p.x < 0) p.dx = -p.dx;
+                    if (p.y > canvas.height || p.y < 0) p.dy = -p.dy;
+                    
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                    ctx.fillStyle = p.color;
+                    ctx.fill();
                 }
             }
 
-            // Initialize Background
             initParticles();
-            animate();
-
+            animateParticles();
+            window.addEventListener('resize', initParticles);
         });
     </script>
 </body>
